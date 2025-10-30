@@ -42,7 +42,7 @@ document.addEventListener('mousemove', (e) => {
 });
 
 // Add hover events to portfolio items
-document.querySelectorAll('.portfolio .item').forEach(item => {
+document.querySelectorAll('.portfolio .portfolio-item').forEach(item => {
     const itemId = item.id;
 
     item.addEventListener('mouseenter', () => {
