@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git -C /Users/cutolo/Developer/cutolo-website log --oneline)",
+      "Bash(git -C /Users/cutolo/Developer/cutolo-website remote:*)",
+      "Bash(git -C /Users/cutolo/Developer/cutolo-website status)",
+      "Bash(git -C /Users/cutolo/Developer/cutolo-website diff index.html)",
+      "Bash(git -C /Users/cutolo/Developer/cutolo-website diff script.js)",
+      "Bash(git -C /Users/cutolo/Developer/cutolo-website diff style.css)"
+    ]
+  }
+}

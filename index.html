@@ -4,47 +4,46 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Francesco Cutolo</title>
-    <meta name="description" content="Francesco Cutolo - Design Lead at Wolt. Digital designer with 15+ years of experience enabling better collaboration and excellent craft.">
+    <meta name="description" content="Francesco Cutolo — Design Lead at Wolt. 15+ years enabling better collaboration and excellent craft.">
     <meta name="author" content="Francesco Cutolo">
-    <meta name="keywords" content="Francesco Cutolo, design, UX, UI, Wolt, digital designer">
+    <meta name="keywords" content="Francesco Cutolo, design, UX, UI, Wolt, design systems, digital designer">
     <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <canvas id="grid-canvas"></canvas>
+
     <main>
-    <header>
-        <h1>Francesco Cutolo</h1>
-        <p class="tagline"><strong>Design lead at Wolt</strong></p>
-        <p>I've been a digital designer for over 15 years. I enable better collaboration and excellent craft. Educator, chaotic protagonist (ENFJ-T), sometimes a pain in the ass.</p>
-        <nav class="contact-links">
-            <p>Find me on <a href="https://www.linkedin.com/in/cut-olo/" rel="noopener" target="_blank">LinkedIn</a> or send me an <a href="mailto:francesco@cutolo.co">email</a>.</p>
-        </nav>
-    </header>
+        <header>
+            <h1 class="reveal">Francesco Cutolo</h1>
+            <p class="tagline reveal"><strong>Design lead at Wolt</strong></p>
+            <p class="reveal">I've been a digital designer for over 15 years. I enable better collaboration and excellent craft. Educator, chaotic protagonist (ENFJ-T), sometimes a pain in the ass.</p>
+            <nav class="contact-links">
+                <p class="reveal">Find me on <a href="https://www.linkedin.com/in/cut-olo/" rel="noopener" target="_blank">LinkedIn</a> or send me an <a href="mailto:francesco@cutolo.co">email</a>.</p>
+            </nav>
+        </header>
 
-    <section class="portfolio" aria-label="Portfolio showcase">
-        <article class="portfolio-item" id="wolt" data-bg="#FCFCFF">
-            <img src="images/wolt.png" alt="Wolt design work showcase" loading="lazy">
-        </article>
-        <article class="portfolio-item" id="orbit">
-            <img src="images/orbit.png" alt="Orbit design system project" loading="lazy">
-        </article>
-        <article class="portfolio-item" id="klarna" data-bg="#FAFAFA">
-            <img src="images/klarna.png" alt="Klarna design projects" loading="lazy">
-        </article>
-        <article class="portfolio-item" id="illustrations">
-            <img src="images/klarna-illo.png" alt="Klarna illustrations and visual design" loading="lazy">
-        </article>
-        <article class="portfolio-item" id="airc" data-bg="#FAFAFA">
-            <img src="images/airc.png" alt="AIRC foundation design work" loading="lazy">
-        </article>
-        <article class="portfolio-item" id="parmalat" data-bg="#FFFAF4">
-            <img src="images/parmalat.png" alt="Parmalat brand design project" loading="lazy">
-        </article>
-    </section>
+        <section class="reveal">
+            <h2>Selected work</h2>
+            <ul class="work-list">
+                <li><span class="work-name">Alchemy</span><span class="work-sep">—</span>Wolt design system</li>
+                <li><span class="work-name">Orbit</span><span class="work-sep">—</span>Design system workshops &amp; consultations</li>
+                <li><span class="work-name">Bubble</span><span class="work-sep">—</span>Klarna design system</li>
+                <li><span class="work-name">Klarna Illustrations</span><span class="work-sep">—</span>Product illustration system</li>
+                <li><span class="work-name">AIRC</span><span class="work-sep">—</span>Graphic design system</li>
+                <li><span class="work-name">Parmalat</span><span class="work-sep">—</span>Mobile apps</li>
+            </ul>
+        </section>
 
-    <footer>
-        <p>Last update: Summer 2025.</p>
-    </footer>
+        <section class="reveal">
+            <h2>Teaching</h2>
+            <p>I run a 3-day 1:1 workshop on building design systems that actually work for people.</p>
+            <a href="/course/">Humanist Design Systems &rarr;</a>
+        </section>
+
+        <footer class="reveal">
+            <p>Last update: Summer 2025.</p>
+        </footer>
     </main>
 
     <script src="script.js"></script>
