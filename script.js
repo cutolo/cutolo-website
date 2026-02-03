@@ -84,9 +84,9 @@
         return [pts.length, pts.length + 1, pts.length + 2];
     }
 
-    function inCircumcircle(p, tri) {
+    function inCircumcircle(pi, tri) {
         const [ai, bi, ci] = tri;
-        const a = allPts[ai], b = allPts[bi], c = allPts[ci];
+        const p = allPts[pi], a = allPts[ai], b = allPts[bi], c = allPts[ci];
         const ax = a.x - p.x, ay = a.y - p.y;
         const bx = b.x - p.x, by = b.y - p.y;
         const cx = c.x - p.x, cy = c.y - p.y;
@@ -139,8 +139,8 @@
         const margin = Math.max(width, height) * 4;
         allPts = points.map(p => ({ x: p.baseX, y: p.baseY }));
         allPts.push({ x: width / 2, y: -margin });
-        allPts.push({ x: -margin, y: margin });
         allPts.push({ x: width + margin, y: margin });
+        allPts.push({ x: -margin, y: margin });
 
         triangles = triangulate(points.map((_, i) => i));
     }
