@@ -29,6 +29,28 @@ body {
     background-color: var(--white);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    transition: color 0.25s ease, background-color 0.25s ease;
+}
+
+/* Dark mode */
+html[data-theme="dark"] {
+    --black: #f0f0f0;
+    --white: #1a1a1a;
+    --gray: #888;
+    --dot-gray: #444;
+}
+
+html[data-theme="dark"] .work-list li {
+    border-bottom-color: #2e2e2e;
+}
+
+html[data-theme="dark"] .cta-section {
+    border-top-color: #2e2e2e;
+}
+
+html[data-theme="dark"] .btn,
+html[data-theme="dark"] .btn:hover {
+    color: #f0f0f0;
 }
 
 /* Canvas background */
@@ -253,4 +275,24 @@ footer a:hover {
 .reveal.visible {
     opacity: 1;
     transform: translateY(0);
+}
+
+/* Theme toggle */
+#theme-toggle {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    background: none;
+    border: none;
+    font-family: var(--font);
+    font-size: 13px;
+    color: var(--gray);
+    cursor: pointer;
+    padding: 4px 0;
+    z-index: 100;
+    transition: color 0.15s ease;
+}
+
+#theme-toggle:hover {
+    color: var(--blue);
 }
