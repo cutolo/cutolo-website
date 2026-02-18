@@ -13,6 +13,10 @@
     const interactRadius = isMobile ? 0 : 220;
     const blue = [20, 0, 255];
 
+    function isDarkMode() {
+        return document.documentElement.dataset.theme === 'dark';
+    }
+
     let width, height, points, triangles, gridCols;
     let mouseX = -9999, mouseY = -9999;
     let prevMouseX = -9999, prevMouseY = -9999;
@@ -150,7 +154,9 @@
                 const sb = Math.round(blue[2]);
                 ctx.fillStyle = `rgba(${sr},${sg},${sb},${fillAlpha})`;
             } else {
-                ctx.fillStyle = `rgba(230,230,238,${idlePulse})`;
+                ctx.fillStyle = isDarkMode()
+                    ? `rgba(50,50,60,${idlePulse * 3})`
+                    : `rgba(230,230,238,${idlePulse})`;
             }
             ctx.fill();
         }
@@ -198,7 +204,9 @@
                     }
                 } else {
                     // Idle: faint gray mesh
-                    ctx.strokeStyle = `rgba(210,210,215,${idleAlpha})`;
+                    ctx.strokeStyle = isDarkMode()
+                        ? `rgba(80,80,90,${idleAlpha})`
+                        : `rgba(210,210,215,${idleAlpha})`;
                     ctx.lineWidth = 0.5;
                     ctx.stroke();
                 }
@@ -244,6 +252,34 @@
 
     resize();
     draw();
+})();
+
+
+// ─── Theme Toggle ────────────────────────────────────────────────────
+
+(function () {
+    const html = document.documentElement;
+    const saved = localStorage.getItem('theme');
+    if (saved) html.dataset.theme = saved;
+
+    const btn = document.createElement('button');
+    btn.id = 'theme-toggle';
+    btn.setAttribute('aria-label', 'Toggle colour theme');
+
+    function updateLabel() {
+        btn.textContent = html.dataset.theme === 'dark' ? 'light' : 'dark';
+    }
+
+    updateLabel();
+
+    btn.addEventListener('click', () => {
+        const dark = html.dataset.theme === 'dark';
+        html.dataset.theme = dark ? 'light' : 'dark';
+        localStorage.setItem('theme', html.dataset.theme);
+        updateLabel();
+    });
+
+    document.body.appendChild(btn);
 })();
 
 
