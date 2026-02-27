@@ -8,5 +8,6 @@
       "Bash(git -C /Users/cutolo/Developer/cutolo-website diff script.js)",
       "Bash(git -C /Users/cutolo/Developer/cutolo-website diff style.css)"
     ]
-  }
+  },
+  "outputStyle": "Learning"
 }
