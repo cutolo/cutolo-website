@@ -9,8 +9,8 @@
 
     // Config
     const spacing = isMobile ? 65 : 42;
-    const jitter = spacing * 0.38;
-    const interactRadius = isMobile ? 0 : 220;
+    const jitter = spacing * 0.25;
+    const interactRadius = isMobile ? 0 : 140;
     const blue = [20, 0, 255];
 
     function isDarkMode() {
@@ -112,11 +112,11 @@
                 const dy = p.y - mouseY;
                 const dist = Math.sqrt(dx * dx + dy * dy);
                 const target = dist < interactRadius ? 1 - dist / interactRadius : 0;
-                p.activation += (target - p.activation) * 0.08;
+                p.activation += (target - p.activation) * 0.05;
 
                 // Push points away from cursor
                 if (dist < interactRadius && dist > 1) {
-                    const force = (1 - dist / interactRadius) * 10 * (1 + mouseSpeed * 0.04);
+                    const force = (1 - dist / interactRadius) * 4 * (1 + mouseSpeed * 0.02);
                     p.x += (dx / dist) * force;
                     p.y += (dy / dist) * force;
                 }
@@ -147,10 +147,10 @@
 
             if (maxAct > 0.01) {
                 // Active: blue shard fill
-                const fillAlpha = avgAct * 0.25 + idlePulse;
+                const fillAlpha = avgAct * 0.10 + idlePulse;
                 const shimmer = Math.sin(time * 3 + cx * 0.01 + cy * 0.008) * 0.5 + 0.5;
-                const sr = Math.round(blue[0] + (255 - blue[0]) * shimmer * avgAct * 0.2);
-                const sg = Math.round(blue[1] + 80 * shimmer * avgAct * 0.15);
+                const sr = Math.round(blue[0] + (255 - blue[0]) * shimmer * avgAct * 0.1);
+                const sg = Math.round(blue[1] + 40 * shimmer * avgAct * 0.08);
                 const sb = Math.round(blue[2]);
                 ctx.fillStyle = `rgba(${sr},${sg},${sb},${fillAlpha})`;
             } else {
@@ -186,22 +186,12 @@
 
                 if (edgeAct > 0.01) {
                     // Glowing blue edge
-                    const glow = edgeAct * 0.7;
-                    const pulse = 1 + Math.sin(time * 4 + a.x * 0.02) * 0.15;
-                    const alpha = Math.min(glow * pulse + idleAlpha, 0.85);
+                    const glow = edgeAct * 0.4;
+                    const pulse = 1 + Math.sin(time * 4 + a.x * 0.02) * 0.08;
+                    const alpha = Math.min(glow * pulse + idleAlpha, 0.45);
                     ctx.strokeStyle = `rgba(${blue[0]},${blue[1]},${blue[2]},${alpha})`;
-                    ctx.lineWidth = 0.5 + edgeAct * 2.5;
+                    ctx.lineWidth = 0.5 + edgeAct * 1.0;
                     ctx.stroke();
-
-                    // Outer glow halo
-                    if (edgeAct > 0.25) {
-                        ctx.beginPath();
-                        ctx.moveTo(a.x, a.y);
-                        ctx.lineTo(b.x, b.y);
-                        ctx.strokeStyle = `rgba(${blue[0]},${blue[1]},${blue[2]},${edgeAct * 0.15})`;
-                        ctx.lineWidth = 2 + edgeAct * 5;
-                        ctx.stroke();
-                    }
                 } else {
                     // Idle: faint gray mesh
                     ctx.strokeStyle = isDarkMode()
@@ -219,22 +209,14 @@
             if (p.activation < 0.03) continue;
 
             const a = p.activation;
-            const r = 1 + a * 3;
-            const pulse = 1 + Math.sin(time * 5 + p.phase) * 0.3 * a;
-            const alpha = a * 0.8;
+            const r = 1 + a * 1.5;
+            const pulse = 1 + Math.sin(time * 5 + p.phase) * 0.15 * a;
+            const alpha = a * 0.45;
 
             ctx.beginPath();
             ctx.arc(p.x, p.y, r * pulse, 0, Math.PI * 2);
             ctx.fillStyle = `rgba(${blue[0]},${blue[1]},${blue[2]},${alpha})`;
             ctx.fill();
-
-            // Glow ring
-            if (a > 0.35) {
-                ctx.beginPath();
-                ctx.arc(p.x, p.y, r * pulse + 4, 0, Math.PI * 2);
-                ctx.fillStyle = `rgba(${blue[0]},${blue[1]},${blue[2]},${a * 0.1})`;
-                ctx.fill();
-            }
         }
 
         requestAnimationFrame(draw);
