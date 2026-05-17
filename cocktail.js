@@ -27,12 +27,11 @@ const INGREDIENT_COLORS = {
   'China Bitter':    '#B07838',
 };
 
-// 0 = none, 1 = rising bubbles, 2 = wavy stripes, 3 = tiny fizz, 4 = film grain
+// 0 = none, 1 = rising bubbles, 2 = wavy stripes, 3 = tiny fizz
 const INGREDIENT_PATTERNS = {
   'Orange Juice': 1,  // bubbles — pulpy citrus
   'Lemon Juice':  2,  // stripes — squeezed citrus
   'Water':        3,  // fizz — carbonation
-  'Whisky':       4,  // grain — barrel-aged warmth
 };
 
 function hexToRgb(hex) {

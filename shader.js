@@ -71,12 +71,6 @@ const LiquidShader = (() => {
       return 1.0 - smoothstep(r - 0.015, r + 0.015, length(cell - vec2(cx, cy)));
     }
 
-    // Pattern 4: Static grain (Cognac, Whisky) — baked texture, no animation
-    // Large multipliers give well-distributed randomness with no visible period
-    float grainPat() {
-      return hash(floor(gl_FragCoord.xy * 0.5) * vec2(127.1, 311.7));
-    }
-
     float getPattern(float patId, vec2 uv) {
       if (patId < 1.5) return bubblesPat(uv);
       if (patId < 2.5) return waveStripesPat(uv);
@@ -86,9 +80,6 @@ const LiquidShader = (() => {
     vec3 applyPattern(vec3 col, float patId, vec2 uv) {
       if (patId < 0.5) {
         return col;
-      } else if (patId >= 3.5) {
-        // Grain called directly — avoids speculative evaluation of other patterns
-        return clamp(col + vec3((grainPat() - 0.5) * 0.06), 0.0, 1.0);
       } else {
         float p = getPattern(patId, uv);
         if (p < 0.001) return col;
