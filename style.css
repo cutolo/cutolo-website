@@ -53,11 +53,6 @@ main {
   max-width: 480px;
 }
 
-header,
-#cocktail {
-  background: var(--top-ingredient-color);
-}
-
 header {
   margin: -40px -40px 0;
   padding: 40px 40px 32px;
@@ -80,7 +75,6 @@ header nav {
   font-size: 12px;
   font-style: normal;
   font-variation-settings: 'slnt' 0;
-  background: var(--bottom-ingredient-color);
   margin: 0 -40px -40px;
   padding: 28px 40px 40px;
 }
