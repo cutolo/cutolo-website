@@ -73,15 +73,8 @@ header nav {
 /* Cocktail section: smaller, upright (not italic) */
 #cocktail {
   font-size: 12px;
-  font-style: normal;
-  font-variation-settings: 'slnt' 0;
   margin: 0 -40px -40px;
   padding: 28px 40px 40px;
-}
-
-#cocktail * {
-  font-style: normal;
-  font-variation-settings: 'slnt' 0;
 }
 
 .label {
