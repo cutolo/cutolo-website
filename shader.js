@@ -42,15 +42,18 @@ const LiquidShader = (() => {
       return sum;
     }
 
-    // Pattern 1: Floating bubbles (Orange Juice)
+    // Pattern 1: Small geometric pulp dots (Orange Juice)
     float bubblesPat(vec2 uv) {
-      vec2 cell = fract(uv * 10.0);
-      vec2 id   = floor(uv * 10.0);
+      vec2 grid = uv * vec2(16.0, 18.0);
+      vec2 id   = floor(grid);
+      vec2 cell = fract(grid);
+      float rowOffset = mod(id.y, 2.0) * 0.5;
       float seed = hash(id);
-      float cx = 0.25 + seed * 0.5;
-      float cy = fract(hash(id + 0.7) - u_time * 0.065 * (0.5 + seed * 0.5));
-      float r  = 0.055 + seed * 0.045;
-      return 1.0 - smoothstep(r - 0.015, r + 0.015, length(cell - vec2(cx, cy)));
+      vec2 center = vec2(0.5 + rowOffset, 0.5);
+      center.x = fract(center.x);
+      center += (vec2(hash(id + 2.1), hash(id + 8.7)) - 0.5) * 0.12;
+      float r = 0.035 + seed * 0.012;
+      return 1.0 - smoothstep(r - 0.008, r + 0.008, length(cell - center));
     }
 
     // Pattern 2: Fine wavy stripes (Lemon Juice)
