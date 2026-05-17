@@ -9,15 +9,16 @@
   --font: 'Recursive', monospace;
   --top-ingredient-color: #D4B888;
   --bottom-ingredient-color: #E8A030;
+  --app-height: 100svh;
 }
 
 html, body {
-  min-height: 100%;
+  height: var(--app-height);
   overflow: hidden;
 }
 
 html {
-  min-height: -webkit-fill-available;
+  overscroll-behavior: none;
 }
 
 body {
@@ -30,14 +31,15 @@ body {
   background: var(--bottom-ingredient-color);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  min-height: -webkit-fill-available;
+  overscroll-behavior: none;
+  width: 100%;
 }
 
 #gl-canvas {
   position: fixed;
   inset: 0;
   width: 100%;
-  height: 100dvh;
+  height: var(--app-height);
   z-index: -1;
 }
 
@@ -45,9 +47,8 @@ main {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  min-height: 100vh;
-  min-height: -webkit-fill-available;
-  min-height: 100dvh;
+  height: var(--app-height);
+  overflow: hidden;
   padding: 40px;
   max-width: 480px;
 }
@@ -170,6 +171,12 @@ a {
 
 /* Mobile */
 @media (max-width: 767px) {
+  html,
+  body {
+    position: fixed;
+    inset: 0;
+  }
+
   main {
     padding: 24px;
     max-width: none;
@@ -185,11 +192,13 @@ a {
   }
 
   #cocktail {
+    flex: 0 1 auto;
     font-size: 14px;
     margin: 0 -24px -24px;
-    max-height: 40dvh;
+    max-height: 38%;
     overflow-y: auto;
     padding: 24px 24px calc(32px + env(safe-area-inset-bottom));
+    -webkit-overflow-scrolling: touch;
   }
 
   #cocktail-name {
