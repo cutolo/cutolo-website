@@ -70,8 +70,8 @@ const LiquidShader = (() => {
       float seed = hash(id + 17.3);
       float cx = 0.2 + seed * 0.6;
       float cy = fract(hash(id + 0.3) - u_time * 0.038 * (0.4 + seed * 0.6));
-      float r  = 0.085;
-      return 1.0 - smoothstep(r - 0.015, r + 0.015, length(cell - vec2(cx, cy)));
+      float r  = 0.125;
+      return 1.0 - smoothstep(r - 0.018, r + 0.018, length(cell - vec2(cx, cy)));
     }
 
     // Pattern 4: Static grain (Cognac, Whisky) — baked texture, no animation
