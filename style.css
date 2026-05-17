@@ -1,298 +1,166 @@
-*,
-*::before,
-*::after {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 :root {
-    --blue: #1400FF;
-    --black: #1d1d1d;
-    --white: #ffffff;
-    --gray: #999;
-    --dot-gray: #e0e0e0;
-    --font: 'Inconsolata', monospace;
+  --black: #000000;
+  --font: 'Recursive', monospace;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900&display=swap');
-
-html {
-    scroll-behavior: smooth;
+html, body {
+  height: 100vh;
+  overflow: hidden;
 }
 
 body {
-    font-family: var(--font);
-    font-size: 15px;
-    line-height: 1.5;
-    color: var(--black);
-    background-color: var(--white);
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    transition: color 0.25s ease, background-color 0.25s ease;
+  font-family: var(--font);
+  font-style: italic;
+  font-variation-settings: 'slnt' -15;
+  font-size: 15px;
+  line-height: 1.4;
+  color: var(--black);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* Dark mode */
-html[data-theme="dark"] {
-    --black: #f0f0f0;
-    --white: #1a1a1a;
-    --gray: #888;
-    --dot-gray: #444;
+#gl-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
 }
 
-html[data-theme="dark"] .work-list li {
-    border-bottom-color: #2e2e2e;
-}
-
-html[data-theme="dark"] .cta-section {
-    border-top-color: #2e2e2e;
-}
-
-html[data-theme="dark"] .btn,
-html[data-theme="dark"] .btn:hover {
-    color: #f0f0f0;
-}
-
-/* Canvas background */
-#grid-canvas {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    pointer-events: none;
-}
-
-/* Layout */
 main {
-    padding: 48px 24px;
-    max-width: 100%;
-    margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100vh;
+  padding: 40px;
+  max-width: 480px;
 }
 
-@media (min-width: 768px) {
-    main {
-        max-width: 540px;
-        padding: 80px 24px;
-    }
+header p {
+  margin-bottom: 6px;
 }
 
-/* Typography */
-h1 {
-    font-size: 15px;
-    font-weight: 600;
-    margin-bottom: 12px;
-    color: var(--black);
+.workshop {
+  margin-top: 20px;
 }
 
-h2 {
-    font-size: 15px;
-    font-weight: 600;
-    margin-bottom: 16px;
-    color: var(--black);
+header nav {
+  margin-top: 20px;
 }
 
-h3 {
-    font-size: 15px;
-    font-weight: 600;
-    margin-bottom: 8px;
-    color: var(--black);
+/* Cocktail section: smaller, upright (not italic) */
+#cocktail {
+  font-size: 12px;
+  font-style: normal;
+  font-variation-settings: 'slnt' 0;
+  padding-bottom: 4px;
 }
 
-p {
-    margin-bottom: 12px;
+#cocktail * {
+  font-style: normal;
+  font-variation-settings: 'slnt' 0;
 }
 
-small, .meta {
-    font-size: 13px;
-    color: var(--gray);
+.label {
+  margin-bottom: 4px;
+}
+
+#cocktail-name {
+  font-size: 12px;
+  font-weight: 700;
+}
+
+#cocktail-instructions {
+  margin-bottom: 4px;
+}
+
+#cocktail-ingredients {
+  list-style: none;
 }
 
 a {
-    color: var(--black);
-    font-weight: 600;
-    text-decoration: underline;
-    text-underline-offset: 3px;
-    text-decoration-thickness: 1.5px;
-    transition: color 0.15s ease;
+  color: inherit;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
 }
 
-a:hover {
-    color: var(--blue);
+/* Debug menu */
+#debug-btn {
+  position: fixed;
+  display: none;
+  bottom: 16px;
+  right: 16px;
+  background: rgba(0, 0, 0, 0.12);
+  border: none;
+  padding: 3px 8px;
+  font-family: var(--font);
+  font-size: 11px;
+  font-style: normal;
+  cursor: pointer;
+  z-index: 20;
+  border-radius: 2px;
+  color: var(--black);
 }
 
-strong {
-    font-weight: 600;
+#debug {
+  position: fixed;
+  display: none;
+  bottom: 44px;
+  right: 16px;
+  background: rgba(255, 255, 255, 0.92);
+  padding: 12px 16px;
+  max-height: 60vh;
+  overflow-y: auto;
+  z-index: 20;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  min-width: 200px;
 }
 
-/* Header */
-header {
-    margin-bottom: 48px;
+#debug p {
+  font-size: 10px;
+  font-style: normal;
+  font-variation-settings: 'slnt' 0;
+  opacity: 0.5;
+  margin-bottom: 6px;
 }
 
-.tagline {
-    margin-bottom: 12px;
+#debug ul { list-style: none; }
+
+#debug li {
+  font-size: 12px;
+  font-style: normal;
+  font-variation-settings: 'slnt' 0;
+  cursor: pointer;
+  padding: 2px 0;
 }
 
-.contact-links p {
-    margin-bottom: 0;
-}
+#debug li:hover { font-weight: 700; }
+#debug li.active { font-weight: 700; }
 
-/* Sections */
-section {
-    margin-bottom: 48px;
-}
+/* Mobile */
+@media (max-width: 767px) {
+  main {
+    padding: 24px;
+  }
 
-section:last-of-type {
-    margin-bottom: 48px;
-}
+  body {
+    font-size: 17px;
+  }
 
-/* Work list */
-.work-list {
-    list-style: none;
-    padding: 0;
-}
+  #cocktail {
+    font-size: 14px;
+  }
 
-.work-list li {
-    padding: 6px 0;
-    border-bottom: 1px solid #f0f0f0;
-}
-
-.work-list li:last-child {
-    border-bottom: none;
-}
-
-.work-list .work-name {
-    font-weight: 600;
-}
-
-.work-list .work-sep {
-    color: var(--gray);
-    margin: 0 4px;
-}
-
-/* Button / CTA */
-.btn {
-    display: inline-block;
-    font-family: var(--font);
-    font-size: 15px;
-    font-weight: 600;
-    color: var(--white);
-    background-color: var(--blue);
-    padding: 12px 24px;
-    text-decoration: none;
-    transition: opacity 0.15s ease;
-}
-
-.btn:hover {
-    color: var(--white);
-    opacity: 0.85;
-}
-
-/* Breadcrumb */
-.breadcrumb {
-    margin-bottom: 32px;
-    font-size: 13px;
-}
-
-.breadcrumb a {
-    font-weight: 400;
-    color: var(--gray);
-    text-decoration: none;
-}
-
-.breadcrumb a:hover {
-    color: var(--blue);
-}
-
-.breadcrumb .sep {
-    color: var(--gray);
-    margin: 0 6px;
-}
-
-/* Schedule (course page) */
-.day {
-    margin-bottom: 24px;
-}
-
-.day:last-child {
-    margin-bottom: 0;
-}
-
-/* Learn list */
-.learn-list {
-    list-style: none;
-    padding: 0;
-}
-
-.learn-list li {
-    padding: 4px 0;
-    padding-left: 16px;
-    position: relative;
-}
-
-.learn-list li::before {
-    content: '—';
-    position: absolute;
-    left: 0;
-    color: var(--blue);
-}
-
-/* CTA section */
-.cta-section {
-    padding-top: 24px;
-    border-top: 1px solid #f0f0f0;
-}
-
-.cta-section p {
-    margin-bottom: 16px;
-}
-
-/* Footer */
-footer {
-    margin-top: 0;
-}
-
-footer p, footer a {
-    font-size: 13px;
-    color: var(--gray);
-    font-weight: 400;
-}
-
-footer a:hover {
-    color: var(--blue);
-}
-
-/* Reveal animation */
-.reveal {
-    opacity: 0;
-    transform: translateY(12px);
-    transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1),
-                transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.reveal.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* Theme toggle */
-#theme-toggle {
-    position: fixed;
-    bottom: 24px;
-    right: 24px;
-    background: none;
-    border: none;
-    font-family: var(--font);
-    font-size: 13px;
-    color: var(--gray);
-    cursor: pointer;
-    padding: 4px 0;
-    z-index: 100;
-    transition: color 0.15s ease;
-}
-
-#theme-toggle:hover {
-    color: var(--blue);
+  #cocktail-name {
+    font-size: 14px;
+  }
 }

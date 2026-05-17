@@ -1,50 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Francesco Cutolo</title>
-    <meta name="description" content="Francesco Cutolo — Design Lead at Wolt. 15+ years enabling better collaboration and excellent craft.">
-    <meta name="author" content="Francesco Cutolo">
-    <meta name="keywords" content="Francesco Cutolo, design, UX, UI, Wolt, design systems, digital designer">
-    <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Francesco Cutolo</title>
+  <meta name="description" content="Francesco Cutolo — designer, educator, chaotic protagonist.">
+  <link href="https://fonts.googleapis.com/css2?family=Recursive:slnt,wght@-15,300..700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <canvas id="grid-canvas"></canvas>
+  <canvas id="gl-canvas"></canvas>
 
-    <main>
-        <header>
-            <h1 class="reveal">Francesco Cutolo</h1>
-            <p class="tagline reveal"><strong>Design lead at Wolt</strong></p>
-            <p class="reveal">I've been a digital designer for over 15 years. I enable better collaboration and excellent craft. Educator, chaotic protagonist (ENFJ-T), sometimes a pain in the ass.</p>
-            <nav class="contact-links">
-                <p class="reveal">Find me on <a href="https://www.linkedin.com/in/cut-olo/" rel="noopener" target="_blank">LinkedIn</a> or send me an <a href="mailto:francesco@cutolo.co">email</a>.</p>
-            </nav>
-        </header>
+  <main>
+    <header>
+      <p>I'm Francesco.</p>
+      <p>I'm a designer, an educator, a chaotic protagonist (ENFJ-T) and sometimes a pain in the ass.</p>
+      <p>Currently enabling better collaboration and higher craft at Doordash.</p>
+      <p class="workshop">I run a 3-day 1:1 workshop on building design systems that actually work for people.</p>
+      <nav>
+        <p>Find me on <a href="https://www.linkedin.com/in/cut-olo/" target="_blank" rel="noopener">Linkedin</a> and <a href="https://x.com/cut_olo" target="_blank" rel="noopener">Twitter</a>.</p>
+      </nav>
+    </header>
 
-        <section class="reveal">
-            <h2>Selected work</h2>
-            <ul class="work-list">
-                <li><span class="work-name">Alchemy</span><span class="work-sep">—</span>Wolt design system</li>
-                <li><span class="work-name">Bubble</span><span class="work-sep">—</span>Klarna design system</li>
-                <li><span class="work-name">Klarna Illustrations</span><span class="work-sep">—</span>Product illustration system</li>
-                <li><span class="work-name">AIRC</span><span class="work-sep">—</span>Graphic design system</li>
-                <li><span class="work-name">Parmalat</span><span class="work-sep">—</span>Mobile apps</li>
-            </ul>
-        </section>
+    <section id="cocktail">
+      <p class="label">Cocktail:</p>
+      <p id="cocktail-name"></p>
+      <p id="cocktail-instructions"></p>
+      <ul id="cocktail-ingredients"></ul>
+    </section>
+  </main>
 
-        <section class="reveal">
-            <h2>Teaching</h2>
-            <p>I run a 3-day 1:1 workshop on building design systems that actually work for people.</p>
-            <a href="/course/">Humanist Design Systems &rarr;</a>
-        </section>
+  <!-- Debug menu -->
+  <div id="debug" hidden>
+    <p>Select cocktail</p>
+    <ul id="debug-list"></ul>
+  </div>
+  <button id="debug-btn" title="Toggle debug menu">debug</button>
 
-        <footer class="reveal">
-            <p>Last update: Summer 2025.</p>
-        </footer>
-    </main>
-
-    <script src="script.js"></script>
+  <script src="shader.js"></script>
+  <script src="cocktail.js"></script>
 </body>
 </html>
