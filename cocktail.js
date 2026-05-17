@@ -47,14 +47,6 @@ function randomIndex(total) {
   return Math.floor(Math.random() * total);
 }
 
-function setAppHeight() {
-  const viewport = window.visualViewport;
-  const height = viewport ? viewport.height : window.innerHeight;
-  document.documentElement.style.setProperty('--app-height', `${Math.round(height)}px`);
-}
-
-setAppHeight();
-
 function loadCocktail(cocktail) {
   document.getElementById('cocktail-name').textContent = cocktail.name;
   document.getElementById('cocktail-instructions').textContent = cocktail.instructions;
@@ -111,14 +103,6 @@ function initDebugMenu(cocktails, activeIndex) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  setAppHeight();
-  window.addEventListener('resize', setAppHeight);
-  window.addEventListener('orientationchange', setAppHeight);
-  if (window.visualViewport) {
-    window.visualViewport.addEventListener('resize', setAppHeight);
-    window.visualViewport.addEventListener('scroll', setAppHeight);
-  }
-
   const ok = LiquidShader.init('gl-canvas');
 
   fetch('cocktails.json')
