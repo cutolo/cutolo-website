@@ -32,7 +32,6 @@ const INGREDIENT_PATTERNS = {
   'Orange Juice': 1,  // bubbles — pulpy citrus
   'Lemon Juice':  2,  // stripes — squeezed citrus
   'Water':        3,  // fizz — carbonation
-  'Whisky':       4,  // grain — barrel-aged warmth
 };
 
 function hexToRgb(hex) {
