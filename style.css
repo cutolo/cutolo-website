@@ -7,11 +7,17 @@
 :root {
   --black: #000000;
   --font: 'Recursive', monospace;
+  --top-ingredient-color: #D4B888;
+  --bottom-ingredient-color: #E8A030;
 }
 
 html, body {
-  height: 100vh;
+  min-height: 100%;
   overflow: hidden;
+}
+
+html {
+  min-height: -webkit-fill-available;
 }
 
 body {
@@ -21,15 +27,17 @@ body {
   font-size: 15px;
   line-height: 1.4;
   color: var(--black);
+  background: var(--bottom-ingredient-color);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  min-height: -webkit-fill-available;
 }
 
 #gl-canvas {
   position: fixed;
   inset: 0;
   width: 100%;
-  height: 100%;
+  height: 100dvh;
   z-index: -1;
 }
 
@@ -37,9 +45,21 @@ main {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 100vh;
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
+  min-height: 100dvh;
   padding: 40px;
   max-width: 480px;
+}
+
+header,
+#cocktail {
+  background: var(--top-ingredient-color);
+}
+
+header {
+  margin: -40px -40px 0;
+  padding: 40px 40px 32px;
 }
 
 header p {
@@ -59,7 +79,9 @@ header nav {
   font-size: 12px;
   font-style: normal;
   font-variation-settings: 'slnt' 0;
-  padding-bottom: 4px;
+  background: var(--bottom-ingredient-color);
+  margin: 0 -40px -40px;
+  padding: 28px 40px 40px;
 }
 
 #cocktail * {
@@ -150,17 +172,32 @@ a {
 @media (max-width: 767px) {
   main {
     padding: 24px;
+    max-width: none;
+  }
+
+  header {
+    margin: -24px -24px 0;
+    padding: calc(24px + env(safe-area-inset-top)) 24px 24px;
   }
 
   body {
-    font-size: 17px;
+    font-size: 16px;
   }
 
   #cocktail {
     font-size: 14px;
+    margin: 0 -24px -24px;
+    max-height: 40dvh;
+    overflow-y: auto;
+    padding: 24px 24px calc(32px + env(safe-area-inset-bottom));
   }
 
   #cocktail-name {
     font-size: 14px;
+  }
+
+  #cocktail-instructions,
+  #cocktail-ingredients {
+    line-height: 1.3;
   }
 }

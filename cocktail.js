@@ -51,6 +51,14 @@ function loadCocktail(cocktail) {
   document.getElementById('cocktail-name').textContent = cocktail.name;
   document.getElementById('cocktail-instructions').textContent = cocktail.instructions;
 
+  const ingredientColors = cocktail.ingredients.map(ing => INGREDIENT_COLORS[ing.name] || '#A0A0A0');
+  document.documentElement.style.setProperty('--top-ingredient-color', ingredientColors[ingredientColors.length - 1]);
+  document.documentElement.style.setProperty('--bottom-ingredient-color', ingredientColors[0]);
+  document.body.style.backgroundColor = ingredientColors[0];
+
+  const themeColor = document.querySelector('meta[name="theme-color"]');
+  if (themeColor) themeColor.setAttribute('content', ingredientColors[ingredientColors.length - 1]);
+
   const ul = document.getElementById('cocktail-ingredients');
   ul.innerHTML = '';
   cocktail.ingredients.forEach(ing => {
