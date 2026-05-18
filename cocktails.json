@@ -3,744 +3,2970 @@
     "name": "A.B.C. Cocktail",
     "instructions": "Shake with ice. Serve with a lemon twist.",
     "ingredients": [
-      { "pct": 60, "name": "Cognac" },
-      { "pct": 20, "name": "Sweet Vermouth" },
-      { "pct": 10, "name": "Dry Vermouth" },
-      { "pct": 10, "name": "Medoc Cordial" }
+      {
+        "pct": 60,
+        "name": "Cognac"
+      },
+      {
+        "pct": 20,
+        "name": "Sweet Vermouth"
+      },
+      {
+        "pct": 10,
+        "name": "Dry Vermouth"
+      },
+      {
+        "pct": 10,
+        "name": "Medoc Cordial"
+      }
+    ]
+  },
+  {
+    "name": "Abbey",
+    "instructions": "Agitare nello shaker con ghiaccio. Servire nella coppa da cocktail.",
+    "ingredients": [
+      {
+        "pct": 40,
+        "name": "Gin"
+      },
+      {
+        "pct": 25,
+        "name": "Orange Juice"
+      },
+      {
+        "pct": 25,
+        "name": "Sweet Vermouth"
+      },
+      {
+        "pct": 10,
+        "name": "Angostura"
+      }
     ]
   },
   {
     "name": "Absinthe Cocktail",
     "instructions": "Shake with ice. Serve with a lemon twist.",
     "ingredients": [
-      { "pct": 50, "name": "Absinthe" },
-      { "pct": 30, "name": "Water" },
-      { "pct": 20, "name": "Anisette" }
+      {
+        "pct": 50,
+        "name": "Absinthe"
+      },
+      {
+        "pct": 30,
+        "name": "Water"
+      },
+      {
+        "pct": 20,
+        "name": "Anisette"
+      }
     ]
   },
   {
     "name": "Acacias Cocktail",
     "instructions": "Shake with ice. Serve cold. (Prix d'honneur, Biarritz 1928.)",
     "ingredients": [
-      { "pct": 75, "name": "Gin" },
-      { "pct": 25, "name": "Bénédictine" }
+      {
+        "pct": 75,
+        "name": "Gin"
+      },
+      {
+        "pct": 25,
+        "name": "Bénédictine"
+      }
     ]
   },
   {
     "name": "Achtagram Cocktail",
     "instructions": "Shake with ice. Serve with a candied cherry.",
     "ingredients": [
-      { "pct": 40, "name": "Arak" },
-      { "pct": 40, "name": "Dry Vermouth" },
-      { "pct": 20, "name": "Coffee Liqueur" }
+      {
+        "pct": 40,
+        "name": "Arak"
+      },
+      {
+        "pct": 40,
+        "name": "Dry Vermouth"
+      },
+      {
+        "pct": 20,
+        "name": "Coffee Liqueur"
+      }
+    ]
+  },
+  {
+    "name": "Adua Cocktail",
+    "instructions": "Agitare nel shaker con ghiaccio. Servire nella coppa da cocktail.",
+    "ingredients": [
+      {
+        "pct": 35,
+        "name": "Gin"
+      },
+      {
+        "pct": 25,
+        "name": "Campari"
+      },
+      {
+        "pct": 25,
+        "name": "Sweet Vermouth"
+      },
+      {
+        "pct": 15,
+        "name": "Orange Juice"
+      }
+    ]
+  },
+  {
+    "name": "Affinity",
+    "instructions": "Mescolare nel mixing glass con ghiaccio. Filtrare nel calice.",
+    "ingredients": [
+      {
+        "pct": 40,
+        "name": "Whisky"
+      },
+      {
+        "pct": 30,
+        "name": "Sweet Vermouth"
+      },
+      {
+        "pct": 25,
+        "name": "Dry Vermouth"
+      },
+      {
+        "pct": 5,
+        "name": "Angostura"
+      }
     ]
   },
   {
     "name": "Alabazam",
     "instructions": "Shake with ice. Serve cold.",
     "ingredients": [
-      { "pct": 40, "name": "Cognac" },
-      { "pct": 20, "name": "Cointreau" },
-      { "pct": 20, "name": "Lemon Juice" },
-      { "pct": 10, "name": "Sugar" },
-      { "pct": 10, "name": "Angostura" }
+      {
+        "pct": 40,
+        "name": "Cognac"
+      },
+      {
+        "pct": 20,
+        "name": "Cointreau"
+      },
+      {
+        "pct": 20,
+        "name": "Lemon Juice"
+      },
+      {
+        "pct": 10,
+        "name": "Sugar"
+      },
+      {
+        "pct": 10,
+        "name": "Angostura"
+      }
     ]
   },
   {
     "name": "Alaska",
     "instructions": "Stir with ice. Serve with a lemon twist.",
     "ingredients": [
-      { "pct": 70, "name": "Gin" },
-      { "pct": 30, "name": "Chartreuse" }
+      {
+        "pct": 70,
+        "name": "Gin"
+      },
+      {
+        "pct": 30,
+        "name": "Chartreuse"
+      }
     ]
   },
   {
     "name": "Americano",
     "instructions": "Pour over ice. Top with sparkling water and an orange twist.",
     "ingredients": [
-      { "pct": 50, "name": "Campari" },
-      { "pct": 50, "name": "Sweet Vermouth" }
+      {
+        "pct": 50,
+        "name": "Campari"
+      },
+      {
+        "pct": 50,
+        "name": "Sweet Vermouth"
+      }
     ]
   },
   {
     "name": "Angel Face",
     "instructions": "Shake with ice. Serve in a chilled coupe.",
     "ingredients": [
-      { "pct": 40, "name": "Gin" },
-      { "pct": 30, "name": "Apricot Liqueur" },
-      { "pct": 30, "name": "Cognac" }
+      {
+        "pct": 40,
+        "name": "Gin"
+      },
+      {
+        "pct": 30,
+        "name": "Apricot Liqueur"
+      },
+      {
+        "pct": 30,
+        "name": "Cognac"
+      }
     ]
   },
   {
     "name": "Ascaro Cocktail",
     "instructions": "Shake with ice. Serve with a candied cherry.",
     "ingredients": [
-      { "pct": 40, "name": "Chartreuse" },
-      { "pct": 25, "name": "Sweet Vermouth" },
-      { "pct": 25, "name": "Cognac" },
-      { "pct": 10, "name": "Lemon Juice" }
+      {
+        "pct": 40,
+        "name": "Chartreuse"
+      },
+      {
+        "pct": 25,
+        "name": "Sweet Vermouth"
+      },
+      {
+        "pct": 25,
+        "name": "Cognac"
+      },
+      {
+        "pct": 10,
+        "name": "Lemon Juice"
+      }
     ]
   },
   {
     "name": "Aviation",
     "instructions": "Shake with ice. Serve in a chilled coupe.",
     "ingredients": [
-      { "pct": 60, "name": "Gin" },
-      { "pct": 20, "name": "Cointreau" },
-      { "pct": 20, "name": "Lemon Juice" }
+      {
+        "pct": 60,
+        "name": "Gin"
+      },
+      {
+        "pct": 20,
+        "name": "Cointreau"
+      },
+      {
+        "pct": 20,
+        "name": "Lemon Juice"
+      }
     ]
   },
   {
     "name": "Bacardi",
     "instructions": "Shake vigorously with ice. Serve in a chilled coupe.",
     "ingredients": [
-      { "pct": 60, "name": "Rum" },
-      { "pct": 30, "name": "Lemon Juice" },
-      { "pct": 10, "name": "Simple Syrup" }
+      {
+        "pct": 60,
+        "name": "Rum"
+      },
+      {
+        "pct": 30,
+        "name": "Lemon Juice"
+      },
+      {
+        "pct": 10,
+        "name": "Simple Syrup"
+      }
+    ]
+  },
+  {
+    "name": "Baltimore",
+    "instructions": "Agitare con ghiaccio nel shaker. Servire nella coppa.",
+    "ingredients": [
+      {
+        "pct": 40,
+        "name": "Cognac"
+      },
+      {
+        "pct": 30,
+        "name": "Rum"
+      },
+      {
+        "pct": 30,
+        "name": "Sweet Vermouth"
+      }
     ]
   },
   {
     "name": "Bee's Knees",
     "instructions": "Shake with ice. Serve in a chilled coupe.",
     "ingredients": [
-      { "pct": 70, "name": "Gin" },
-      { "pct": 20, "name": "Lemon Juice" },
-      { "pct": 10, "name": "Simple Syrup" }
+      {
+        "pct": 70,
+        "name": "Gin"
+      },
+      {
+        "pct": 20,
+        "name": "Lemon Juice"
+      },
+      {
+        "pct": 10,
+        "name": "Simple Syrup"
+      }
     ]
   },
   {
     "name": "Between the Sheets",
     "instructions": "Shake with ice. Serve in a chilled coupe.",
     "ingredients": [
-      { "pct": 34, "name": "Cognac" },
-      { "pct": 33, "name": "Rum" },
-      { "pct": 33, "name": "Cointreau" }
+      {
+        "pct": 34,
+        "name": "Cognac"
+      },
+      {
+        "pct": 33,
+        "name": "Rum"
+      },
+      {
+        "pct": 33,
+        "name": "Cointreau"
+      }
     ]
   },
   {
     "name": "Bichrome",
     "instructions": "Stir with ice. Serve with an orange twist.",
     "ingredients": [
-      { "pct": 50, "name": "Campari" },
-      { "pct": 50, "name": "Cognac" }
+      {
+        "pct": 50,
+        "name": "Campari"
+      },
+      {
+        "pct": 50,
+        "name": "Cognac"
+      }
     ]
   },
   {
     "name": "Bijou",
     "instructions": "Stir with ice. Serve with a cherry.",
     "ingredients": [
-      { "pct": 40, "name": "Gin" },
-      { "pct": 40, "name": "Sweet Vermouth" },
-      { "pct": 20, "name": "Chartreuse" }
+      {
+        "pct": 40,
+        "name": "Gin"
+      },
+      {
+        "pct": 40,
+        "name": "Sweet Vermouth"
+      },
+      {
+        "pct": 20,
+        "name": "Chartreuse"
+      }
+    ]
+  },
+  {
+    "name": "Blood and Sand",
+    "instructions": "Agitare vigorosamente nello shaker. Servire nella coppa da cocktail.",
+    "ingredients": [
+      {
+        "pct": 25,
+        "name": "Whisky"
+      },
+      {
+        "pct": 25,
+        "name": "Sweet Vermouth"
+      },
+      {
+        "pct": 25,
+        "name": "Orange Juice"
+      },
+      {
+        "pct": 25,
+        "name": "Orange Liqueur"
+      }
     ]
   },
   {
     "name": "Bloodhound",
     "instructions": "Shake with ice. Serve cold.",
     "ingredients": [
-      { "pct": 40, "name": "Gin" },
-      { "pct": 30, "name": "Sweet Vermouth" },
-      { "pct": 30, "name": "Dry Vermouth" }
+      {
+        "pct": 40,
+        "name": "Gin"
+      },
+      {
+        "pct": 30,
+        "name": "Sweet Vermouth"
+      },
+      {
+        "pct": 30,
+        "name": "Dry Vermouth"
+      }
     ]
   },
   {
     "name": "Blue Moon",
     "instructions": "Stir with ice. Serve with a lemon twist.",
     "ingredients": [
-      { "pct": 70, "name": "Gin" },
-      { "pct": 20, "name": "Anisette" },
-      { "pct": 10, "name": "Lemon Juice" }
+      {
+        "pct": 70,
+        "name": "Gin"
+      },
+      {
+        "pct": 20,
+        "name": "Anisette"
+      },
+      {
+        "pct": 10,
+        "name": "Lemon Juice"
+      }
     ]
   },
   {
     "name": "Bobby Burns",
     "instructions": "Stir in a mixing glass with ice. Serve with a lemon twist.",
     "ingredients": [
-      { "pct": 50, "name": "Whisky" },
-      { "pct": 50, "name": "Sweet Vermouth" }
+      {
+        "pct": 50,
+        "name": "Whisky"
+      },
+      {
+        "pct": 50,
+        "name": "Sweet Vermouth"
+      }
     ]
   },
   {
     "name": "Boomerang",
     "instructions": "Stir with ice. Serve with a cherry.",
     "ingredients": [
-      { "pct": 50, "name": "Whisky" },
-      { "pct": 30, "name": "Dry Vermouth" },
-      { "pct": 10, "name": "Anisette" },
-      { "pct": 10, "name": "Angostura" }
+      {
+        "pct": 50,
+        "name": "Whisky"
+      },
+      {
+        "pct": 30,
+        "name": "Dry Vermouth"
+      },
+      {
+        "pct": 10,
+        "name": "Anisette"
+      },
+      {
+        "pct": 10,
+        "name": "Angostura"
+      }
+    ]
+  },
+  {
+    "name": "Boulevardier",
+    "instructions": "Mescolare nel mixing glass con ghiaccio. Filtrare nel calice.",
+    "ingredients": [
+      {
+        "pct": 40,
+        "name": "Whisky"
+      },
+      {
+        "pct": 30,
+        "name": "Campari"
+      },
+      {
+        "pct": 30,
+        "name": "Sweet Vermouth"
+      }
     ]
   },
   {
     "name": "Brainstorm",
     "instructions": "Stir with ice. Serve with a lemon twist.",
     "ingredients": [
-      { "pct": 60, "name": "Whisky" },
-      { "pct": 20, "name": "Dry Vermouth" },
-      { "pct": 20, "name": "Bénédictine" }
+      {
+        "pct": 60,
+        "name": "Whisky"
+      },
+      {
+        "pct": 20,
+        "name": "Dry Vermouth"
+      },
+      {
+        "pct": 20,
+        "name": "Bénédictine"
+      }
     ]
   },
   {
     "name": "Brasil Cocktail",
     "instructions": "Shake with ice. Serve with a cherry.",
     "ingredients": [
-      { "pct": 50, "name": "Dry Vermouth" },
-      { "pct": 40, "name": "Cognac" },
-      { "pct": 10, "name": "Angostura" }
+      {
+        "pct": 50,
+        "name": "Dry Vermouth"
+      },
+      {
+        "pct": 40,
+        "name": "Cognac"
+      },
+      {
+        "pct": 10,
+        "name": "Angostura"
+      }
     ]
   },
   {
     "name": "Bronx Cocktail",
     "instructions": "Shake with ice. Serve immediately.",
     "ingredients": [
-      { "pct": 40, "name": "Gin" },
-      { "pct": 20, "name": "Orange Juice" },
-      { "pct": 20, "name": "Sweet Vermouth" },
-      { "pct": 20, "name": "Dry Vermouth" }
+      {
+        "pct": 40,
+        "name": "Gin"
+      },
+      {
+        "pct": 20,
+        "name": "Orange Juice"
+      },
+      {
+        "pct": 20,
+        "name": "Sweet Vermouth"
+      },
+      {
+        "pct": 20,
+        "name": "Dry Vermouth"
+      }
+    ]
+  },
+  {
+    "name": "Brown University",
+    "instructions": "Mescolare nel mixing glass con ghiaccio. Filtrare nel bicchiere da cocktail.",
+    "ingredients": [
+      {
+        "pct": 50,
+        "name": "Cognac"
+      },
+      {
+        "pct": 30,
+        "name": "Dry Vermouth"
+      },
+      {
+        "pct": 20,
+        "name": "Orange Liqueur"
+      }
     ]
   },
   {
     "name": "Café de Paris",
     "instructions": "Shake with ice. Serve cold.",
     "ingredients": [
-      { "pct": 70, "name": "Gin" },
-      { "pct": 15, "name": "Anisette" },
-      { "pct": 15, "name": "Orange Juice" }
+      {
+        "pct": 70,
+        "name": "Gin"
+      },
+      {
+        "pct": 15,
+        "name": "Anisette"
+      },
+      {
+        "pct": 15,
+        "name": "Orange Juice"
+      }
+    ]
+  },
+  {
+    "name": "Café Royal",
+    "instructions": "Agitare nello shaker con ghiaccio. Servire nella coppa da cocktail.",
+    "ingredients": [
+      {
+        "pct": 60,
+        "name": "Cognac"
+      },
+      {
+        "pct": 25,
+        "name": "Absinthe"
+      },
+      {
+        "pct": 15,
+        "name": "Anisette"
+      }
+    ]
+  },
+  {
+    "name": "Cardinale",
+    "instructions": "Mescolare nel mixing glass con ghiaccio abbondante. Servire nel bicchiere da cocktail.",
+    "ingredients": [
+      {
+        "pct": 40,
+        "name": "Gin"
+      },
+      {
+        "pct": 30,
+        "name": "Campari"
+      },
+      {
+        "pct": 30,
+        "name": "Dry Vermouth"
+      }
     ]
   },
   {
     "name": "Caruso",
     "instructions": "Stir with ice. Serve chilled.",
     "ingredients": [
-      { "pct": 40, "name": "Gin" },
-      { "pct": 40, "name": "Dry Vermouth" },
-      { "pct": 20, "name": "Crème de Menthe" }
+      {
+        "pct": 40,
+        "name": "Gin"
+      },
+      {
+        "pct": 40,
+        "name": "Dry Vermouth"
+      },
+      {
+        "pct": 20,
+        "name": "Crème de Menthe"
+      }
     ]
   },
   {
     "name": "Casino",
     "instructions": "Shake with ice. Serve cold.",
     "ingredients": [
-      { "pct": 60, "name": "Gin" },
-      { "pct": 20, "name": "Lemon Juice" },
-      { "pct": 20, "name": "Orange Juice" }
+      {
+        "pct": 60,
+        "name": "Gin"
+      },
+      {
+        "pct": 20,
+        "name": "Lemon Juice"
+      },
+      {
+        "pct": 20,
+        "name": "Orange Juice"
+      }
+    ]
+  },
+  {
+    "name": "Charles",
+    "instructions": "Mescolare nel mixing glass con ghiaccio. Guarnire con scorza di limone.",
+    "ingredients": [
+      {
+        "pct": 60,
+        "name": "Cognac"
+      },
+      {
+        "pct": 35,
+        "name": "Sweet Vermouth"
+      },
+      {
+        "pct": 5,
+        "name": "Angostura"
+      }
     ]
   },
   {
     "name": "Chrysanthemum",
     "instructions": "Stir with ice. Serve with an orange twist.",
     "ingredients": [
-      { "pct": 60, "name": "Dry Vermouth" },
-      { "pct": 30, "name": "Bénédictine" },
-      { "pct": 10, "name": "Absinthe" }
+      {
+        "pct": 60,
+        "name": "Dry Vermouth"
+      },
+      {
+        "pct": 30,
+        "name": "Bénédictine"
+      },
+      {
+        "pct": 10,
+        "name": "Absinthe"
+      }
+    ]
+  },
+  {
+    "name": "Claridge",
+    "instructions": "Agitare bene nello shaker con ghiaccio. Servire nella coppa.",
+    "ingredients": [
+      {
+        "pct": 30,
+        "name": "Gin"
+      },
+      {
+        "pct": 30,
+        "name": "Dry Vermouth"
+      },
+      {
+        "pct": 20,
+        "name": "Cointreau"
+      },
+      {
+        "pct": 20,
+        "name": "Apricot Liqueur"
+      }
     ]
   },
   {
     "name": "Clover Club",
     "instructions": "Shake with ice. Serve in a chilled coupe.",
     "ingredients": [
-      { "pct": 60, "name": "Gin" },
-      { "pct": 25, "name": "Lemon Juice" },
-      { "pct": 15, "name": "Simple Syrup" }
+      {
+        "pct": 60,
+        "name": "Gin"
+      },
+      {
+        "pct": 25,
+        "name": "Lemon Juice"
+      },
+      {
+        "pct": 15,
+        "name": "Simple Syrup"
+      }
+    ]
+  },
+  {
+    "name": "Club Cocktail",
+    "instructions": "Mescolare nel mixing glass. Filtrare nel bicchiere da cocktail.",
+    "ingredients": [
+      {
+        "pct": 55,
+        "name": "Gin"
+      },
+      {
+        "pct": 40,
+        "name": "Sweet Vermouth"
+      },
+      {
+        "pct": 5,
+        "name": "Angostura"
+      }
+    ]
+  },
+  {
+    "name": "Columbia",
+    "instructions": "Agitare vigorosamente con ghiaccio. Servire nella coppa.",
+    "ingredients": [
+      {
+        "pct": 40,
+        "name": "Rum"
+      },
+      {
+        "pct": 40,
+        "name": "Sweet Vermouth"
+      },
+      {
+        "pct": 20,
+        "name": "Lemon Juice"
+      }
+    ]
+  },
+  {
+    "name": "Continental",
+    "instructions": "Agitare nello shaker con ghiaccio tritato. Servire nella coppa.",
+    "ingredients": [
+      {
+        "pct": 50,
+        "name": "Rum"
+      },
+      {
+        "pct": 30,
+        "name": "Crème de Menthe"
+      },
+      {
+        "pct": 20,
+        "name": "Lemon Juice"
+      }
     ]
   },
   {
     "name": "Coronation",
     "instructions": "Stir with ice. Serve cold.",
     "ingredients": [
-      { "pct": 50, "name": "Dry Vermouth" },
-      { "pct": 30, "name": "Sweet Vermouth" },
-      { "pct": 20, "name": "Apricot Liqueur" }
+      {
+        "pct": 50,
+        "name": "Dry Vermouth"
+      },
+      {
+        "pct": 30,
+        "name": "Sweet Vermouth"
+      },
+      {
+        "pct": 20,
+        "name": "Apricot Liqueur"
+      }
     ]
   },
   {
     "name": "Corpse Reviver",
     "instructions": "Shake with ice. Drink in one go, first thing in the morning.",
     "ingredients": [
-      { "pct": 25, "name": "Gin" },
-      { "pct": 25, "name": "Cointreau" },
-      { "pct": 25, "name": "Lemon Juice" },
-      { "pct": 25, "name": "Absinthe" }
+      {
+        "pct": 25,
+        "name": "Gin"
+      },
+      {
+        "pct": 25,
+        "name": "Cointreau"
+      },
+      {
+        "pct": 25,
+        "name": "Lemon Juice"
+      },
+      {
+        "pct": 25,
+        "name": "Absinthe"
+      }
+    ]
+  },
+  {
+    "name": "Crusader",
+    "instructions": "Agitare con ghiaccio nello shaker. Servire nella coppa da cocktail.",
+    "ingredients": [
+      {
+        "pct": 45,
+        "name": "Gin"
+      },
+      {
+        "pct": 30,
+        "name": "Chartreuse"
+      },
+      {
+        "pct": 25,
+        "name": "Lemon Juice"
+      }
     ]
   },
   {
     "name": "Daiquiri",
     "instructions": "Shake vigorously with ice. Serve in a chilled coupe.",
     "ingredients": [
-      { "pct": 70, "name": "Rum" },
-      { "pct": 20, "name": "Lemon Juice" },
-      { "pct": 10, "name": "Simple Syrup" }
+      {
+        "pct": 70,
+        "name": "Rum"
+      },
+      {
+        "pct": 20,
+        "name": "Lemon Juice"
+      },
+      {
+        "pct": 10,
+        "name": "Simple Syrup"
+      }
+    ]
+  },
+  {
+    "name": "Dandy",
+    "instructions": "Mescolare nel mixing glass. Filtrare nel bicchiere da cocktail.",
+    "ingredients": [
+      {
+        "pct": 55,
+        "name": "Whisky"
+      },
+      {
+        "pct": 35,
+        "name": "Cointreau"
+      },
+      {
+        "pct": 10,
+        "name": "Angostura"
+      }
+    ]
+  },
+  {
+    "name": "Deep Sea",
+    "instructions": "Mescolare nel mixing glass con ghiaccio. Filtrare nel bicchiere da cocktail.",
+    "ingredients": [
+      {
+        "pct": 50,
+        "name": "Gin"
+      },
+      {
+        "pct": 35,
+        "name": "Dry Vermouth"
+      },
+      {
+        "pct": 10,
+        "name": "Absinthe"
+      },
+      {
+        "pct": 5,
+        "name": "Angostura"
+      }
+    ]
+  },
+  {
+    "name": "Delmonico",
+    "instructions": "Mescolare nel mixing glass con ghiaccio. Guarnire con scorza d'arancia.",
+    "ingredients": [
+      {
+        "pct": 25,
+        "name": "Cognac"
+      },
+      {
+        "pct": 25,
+        "name": "Gin"
+      },
+      {
+        "pct": 25,
+        "name": "Dry Vermouth"
+      },
+      {
+        "pct": 25,
+        "name": "Sweet Vermouth"
+      }
+    ]
+  },
+  {
+    "name": "Derby",
+    "instructions": "Agitare nello shaker con ghiaccio. Servire nella coppa.",
+    "ingredients": [
+      {
+        "pct": 50,
+        "name": "Gin"
+      },
+      {
+        "pct": 25,
+        "name": "Bénédictine"
+      },
+      {
+        "pct": 25,
+        "name": "Orange Juice"
+      }
     ]
   },
   {
     "name": "Diplomat",
     "instructions": "Stir with ice. Serve with a lemon twist.",
     "ingredients": [
-      { "pct": 60, "name": "Dry Vermouth" },
-      { "pct": 30, "name": "Sweet Vermouth" },
-      { "pct": 10, "name": "Cointreau" }
+      {
+        "pct": 60,
+        "name": "Dry Vermouth"
+      },
+      {
+        "pct": 30,
+        "name": "Sweet Vermouth"
+      },
+      {
+        "pct": 10,
+        "name": "Cointreau"
+      }
+    ]
+  },
+  {
+    "name": "Dream",
+    "instructions": "Agitare con ghiaccio nel shaker. Servire nella coppa da cocktail.",
+    "ingredients": [
+      {
+        "pct": 55,
+        "name": "Cognac"
+      },
+      {
+        "pct": 35,
+        "name": "Orange Liqueur"
+      },
+      {
+        "pct": 10,
+        "name": "Absinthe"
+      }
     ]
   },
   {
     "name": "Dry Martini",
     "instructions": "Stir in a mixing glass with ice. Serve with a green olive.",
     "ingredients": [
-      { "pct": 70, "name": "Gin" },
-      { "pct": 30, "name": "Dry Vermouth" }
+      {
+        "pct": 70,
+        "name": "Gin"
+      },
+      {
+        "pct": 30,
+        "name": "Dry Vermouth"
+      }
     ]
   },
   {
     "name": "Duca di Bergamo",
     "instructions": "Shake with ice. Serve with a candied cherry.",
     "ingredients": [
-      { "pct": 50, "name": "Campari" },
-      { "pct": 30, "name": "Cognac" },
-      { "pct": 10, "name": "Lemon Juice" },
-      { "pct": 10, "name": "Cointreau" }
+      {
+        "pct": 50,
+        "name": "Campari"
+      },
+      {
+        "pct": 30,
+        "name": "Cognac"
+      },
+      {
+        "pct": 10,
+        "name": "Lemon Juice"
+      },
+      {
+        "pct": 10,
+        "name": "Cointreau"
+      }
     ]
   },
   {
     "name": "Duplex",
     "instructions": "Stir with ice. Serve with a lemon twist.",
     "ingredients": [
-      { "pct": 50, "name": "Dry Vermouth" },
-      { "pct": 50, "name": "Sweet Vermouth" }
+      {
+        "pct": 50,
+        "name": "Dry Vermouth"
+      },
+      {
+        "pct": 50,
+        "name": "Sweet Vermouth"
+      }
+    ]
+  },
+  {
+    "name": "Earthquake",
+    "instructions": "Agitare con ghiaccio nello shaker. Servire senza guarnizione.",
+    "ingredients": [
+      {
+        "pct": 35,
+        "name": "Gin"
+      },
+      {
+        "pct": 35,
+        "name": "Whisky"
+      },
+      {
+        "pct": 30,
+        "name": "Absinthe"
+      }
+    ]
+  },
+  {
+    "name": "East India",
+    "instructions": "Agitare nello shaker con ghiaccio. Servire nella coppa da cocktail.",
+    "ingredients": [
+      {
+        "pct": 55,
+        "name": "Cognac"
+      },
+      {
+        "pct": 25,
+        "name": "Orange Liqueur"
+      },
+      {
+        "pct": 15,
+        "name": "Lemon Juice"
+      },
+      {
+        "pct": 5,
+        "name": "Angostura"
+      }
     ]
   },
   {
     "name": "El Presidente",
     "instructions": "Stir with ice. Serve with an orange twist.",
     "ingredients": [
-      { "pct": 60, "name": "Rum" },
-      { "pct": 30, "name": "Dry Vermouth" },
-      { "pct": 10, "name": "Orange Liqueur" }
+      {
+        "pct": 60,
+        "name": "Rum"
+      },
+      {
+        "pct": 30,
+        "name": "Dry Vermouth"
+      },
+      {
+        "pct": 10,
+        "name": "Orange Liqueur"
+      }
     ]
   },
   {
     "name": "Fair and Warmer",
     "instructions": "Shake with ice. Serve cold.",
     "ingredients": [
-      { "pct": 60, "name": "Rum" },
-      { "pct": 30, "name": "Sweet Vermouth" },
-      { "pct": 10, "name": "Cointreau" }
+      {
+        "pct": 60,
+        "name": "Rum"
+      },
+      {
+        "pct": 30,
+        "name": "Sweet Vermouth"
+      },
+      {
+        "pct": 10,
+        "name": "Cointreau"
+      }
+    ]
+  },
+  {
+    "name": "Fallen Angel",
+    "instructions": "Agitare nello shaker con ghiaccio. Servire nella coppa.",
+    "ingredients": [
+      {
+        "pct": 50,
+        "name": "Gin"
+      },
+      {
+        "pct": 25,
+        "name": "Lemon Juice"
+      },
+      {
+        "pct": 20,
+        "name": "Crème de Menthe"
+      },
+      {
+        "pct": 5,
+        "name": "Angostura"
+      }
     ]
   },
   {
     "name": "Fancy Free",
     "instructions": "Stir with ice. Serve cold.",
     "ingredients": [
-      { "pct": 70, "name": "Whisky" },
-      { "pct": 20, "name": "Cointreau" },
-      { "pct": 10, "name": "Angostura" }
+      {
+        "pct": 70,
+        "name": "Whisky"
+      },
+      {
+        "pct": 20,
+        "name": "Cointreau"
+      },
+      {
+        "pct": 10,
+        "name": "Angostura"
+      }
+    ]
+  },
+  {
+    "name": "Fine and Dandy",
+    "instructions": "Agitare vigorosamente con ghiaccio. Filtrare nella coppa.",
+    "ingredients": [
+      {
+        "pct": 45,
+        "name": "Gin"
+      },
+      {
+        "pct": 25,
+        "name": "Cointreau"
+      },
+      {
+        "pct": 25,
+        "name": "Lemon Juice"
+      },
+      {
+        "pct": 5,
+        "name": "Angostura"
+      }
+    ]
+  },
+  {
+    "name": "Floradora",
+    "instructions": "Agitare con ghiaccio e servire nel bicchiere alto su ghiaccio.",
+    "ingredients": [
+      {
+        "pct": 50,
+        "name": "Gin"
+      },
+      {
+        "pct": 30,
+        "name": "Lemon Juice"
+      },
+      {
+        "pct": 20,
+        "name": "Simple Syrup"
+      }
+    ]
+  },
+  {
+    "name": "Florentine",
+    "instructions": "Mescolare nel mixing glass. Servire nel calice con scorza di arancia.",
+    "ingredients": [
+      {
+        "pct": 35,
+        "name": "Cognac"
+      },
+      {
+        "pct": 35,
+        "name": "Sweet Vermouth"
+      },
+      {
+        "pct": 30,
+        "name": "Select"
+      }
+    ]
+  },
+  {
+    "name": "Flying Scotsman",
+    "instructions": "Mescolare nel mixing glass con ghiaccio. Filtrare nel calice.",
+    "ingredients": [
+      {
+        "pct": 50,
+        "name": "Whisky"
+      },
+      {
+        "pct": 35,
+        "name": "Sweet Vermouth"
+      },
+      {
+        "pct": 10,
+        "name": "Simple Syrup"
+      },
+      {
+        "pct": 5,
+        "name": "Angostura"
+      }
+    ]
+  },
+  {
+    "name": "Four Flush",
+    "instructions": "Agitare nello shaker con ghiaccio. Servire nella coppa da cocktail.",
+    "ingredients": [
+      {
+        "pct": 40,
+        "name": "Rum"
+      },
+      {
+        "pct": 30,
+        "name": "Sweet Vermouth"
+      },
+      {
+        "pct": 25,
+        "name": "Dry Vermouth"
+      },
+      {
+        "pct": 5,
+        "name": "Angostura"
+      }
+    ]
+  },
+  {
+    "name": "Frisco",
+    "instructions": "Agitare nello shaker con ghiaccio. Filtrare nella coppa.",
+    "ingredients": [
+      {
+        "pct": 50,
+        "name": "Whisky"
+      },
+      {
+        "pct": 30,
+        "name": "Bénédictine"
+      },
+      {
+        "pct": 20,
+        "name": "Lemon Juice"
+      }
     ]
   },
   {
     "name": "Gibson",
     "instructions": "Stir in a mixing glass with ice. Serve with a cocktail onion.",
     "ingredients": [
-      { "pct": 75, "name": "Gin" },
-      { "pct": 25, "name": "Dry Vermouth" }
+      {
+        "pct": 75,
+        "name": "Gin"
+      },
+      {
+        "pct": 25,
+        "name": "Dry Vermouth"
+      }
     ]
   },
   {
     "name": "Gimlet",
     "instructions": "Shake with ice. Serve in a chilled coupe.",
     "ingredients": [
-      { "pct": 75, "name": "Gin" },
-      { "pct": 25, "name": "Lemon Juice" }
+      {
+        "pct": 75,
+        "name": "Gin"
+      },
+      {
+        "pct": 25,
+        "name": "Lemon Juice"
+      }
+    ]
+  },
+  {
+    "name": "Golden Dawn",
+    "instructions": "Agitare nello shaker con ghiaccio tritato. Servire nella coppa.",
+    "ingredients": [
+      {
+        "pct": 40,
+        "name": "Gin"
+      },
+      {
+        "pct": 35,
+        "name": "Apricot Liqueur"
+      },
+      {
+        "pct": 25,
+        "name": "Orange Juice"
+      }
+    ]
+  },
+  {
+    "name": "Good Fellow",
+    "instructions": "Mescolare nel mixing glass. Filtrare nel bicchiere da cocktail.",
+    "ingredients": [
+      {
+        "pct": 65,
+        "name": "Cognac"
+      },
+      {
+        "pct": 30,
+        "name": "Bénédictine"
+      },
+      {
+        "pct": 5,
+        "name": "Angostura"
+      }
+    ]
+  },
+  {
+    "name": "Grand Slam",
+    "instructions": "Agitare con ghiaccio nel shaker. Servire nella coppa.",
+    "ingredients": [
+      {
+        "pct": 40,
+        "name": "Sweet Vermouth"
+      },
+      {
+        "pct": 30,
+        "name": "Dry Vermouth"
+      },
+      {
+        "pct": 30,
+        "name": "Rum"
+      }
+    ]
+  },
+  {
+    "name": "Green Swizzle",
+    "instructions": "Agitare vigorosamente nello shaker. Servire nel bicchiere alto su ghiaccio.",
+    "ingredients": [
+      {
+        "pct": 50,
+        "name": "Rum"
+      },
+      {
+        "pct": 25,
+        "name": "Lemon Juice"
+      },
+      {
+        "pct": 20,
+        "name": "Crème de Menthe"
+      },
+      {
+        "pct": 5,
+        "name": "Angostura"
+      }
+    ]
+  },
+  {
+    "name": "Hanky Panky",
+    "instructions": "Mescolare nel mixing glass con ghiaccio. Servire con scorza d'arancia.",
+    "ingredients": [
+      {
+        "pct": 45,
+        "name": "Gin"
+      },
+      {
+        "pct": 45,
+        "name": "Sweet Vermouth"
+      },
+      {
+        "pct": 10,
+        "name": "China Bitter"
+      }
+    ]
+  },
+  {
+    "name": "Harry Lauder",
+    "instructions": "Mescolare nel mixing glass. Filtrare nel bicchiere da cocktail.",
+    "ingredients": [
+      {
+        "pct": 50,
+        "name": "Whisky"
+      },
+      {
+        "pct": 40,
+        "name": "Sweet Vermouth"
+      },
+      {
+        "pct": 10,
+        "name": "Simple Syrup"
+      }
     ]
   },
   {
     "name": "Harvard",
     "instructions": "Stir with ice. Serve with a lemon twist.",
     "ingredients": [
-      { "pct": 60, "name": "Cognac" },
-      { "pct": 30, "name": "Sweet Vermouth" },
-      { "pct": 10, "name": "Angostura" }
+      {
+        "pct": 60,
+        "name": "Cognac"
+      },
+      {
+        "pct": 30,
+        "name": "Sweet Vermouth"
+      },
+      {
+        "pct": 10,
+        "name": "Angostura"
+      }
+    ]
+  },
+  {
+    "name": "High Hat",
+    "instructions": "Agitare nello shaker con ghiaccio. Servire nella coppa da cocktail.",
+    "ingredients": [
+      {
+        "pct": 50,
+        "name": "Cognac"
+      },
+      {
+        "pct": 30,
+        "name": "Cointreau"
+      },
+      {
+        "pct": 20,
+        "name": "Lemon Juice"
+      }
+    ]
+  },
+  {
+    "name": "Highland",
+    "instructions": "Mescolare nel bicchiere basso su ghiaccio. Guarnire con scorza di limone.",
+    "ingredients": [
+      {
+        "pct": 50,
+        "name": "Whisky"
+      },
+      {
+        "pct": 25,
+        "name": "Water"
+      },
+      {
+        "pct": 20,
+        "name": "Lemon Juice"
+      },
+      {
+        "pct": 5,
+        "name": "Angostura"
+      }
+    ]
+  },
+  {
+    "name": "Honolulu",
+    "instructions": "Agitare nello shaker con ghiaccio. Servire nella coppa da cocktail.",
+    "ingredients": [
+      {
+        "pct": 50,
+        "name": "Gin"
+      },
+      {
+        "pct": 20,
+        "name": "Orange Juice"
+      },
+      {
+        "pct": 20,
+        "name": "Lemon Juice"
+      },
+      {
+        "pct": 10,
+        "name": "Angostura"
+      }
     ]
   },
   {
     "name": "Ideal",
     "instructions": "Stir with ice. Serve cold.",
     "ingredients": [
-      { "pct": 60, "name": "Gin" },
-      { "pct": 30, "name": "Sweet Vermouth" },
-      { "pct": 10, "name": "Lemon Juice" }
+      {
+        "pct": 60,
+        "name": "Gin"
+      },
+      {
+        "pct": 30,
+        "name": "Sweet Vermouth"
+      },
+      {
+        "pct": 10,
+        "name": "Lemon Juice"
+      }
+    ]
+  },
+  {
+    "name": "Imperial",
+    "instructions": "Mescolare nel mixing glass con ghiaccio. Servire con oliva.",
+    "ingredients": [
+      {
+        "pct": 55,
+        "name": "Gin"
+      },
+      {
+        "pct": 40,
+        "name": "Dry Vermouth"
+      },
+      {
+        "pct": 5,
+        "name": "Angostura"
+      }
     ]
   },
   {
     "name": "Income Tax",
     "instructions": "Shake with ice. Serve cold.",
     "ingredients": [
-      { "pct": 40, "name": "Gin" },
-      { "pct": 20, "name": "Dry Vermouth" },
-      { "pct": 20, "name": "Sweet Vermouth" },
-      { "pct": 20, "name": "Orange Juice" }
+      {
+        "pct": 40,
+        "name": "Gin"
+      },
+      {
+        "pct": 20,
+        "name": "Dry Vermouth"
+      },
+      {
+        "pct": 20,
+        "name": "Sweet Vermouth"
+      },
+      {
+        "pct": 20,
+        "name": "Orange Juice"
+      }
+    ]
+  },
+  {
+    "name": "Ink Street",
+    "instructions": "Agitare vigorosamente con ghiaccio. Servire nella coppa da cocktail.",
+    "ingredients": [
+      {
+        "pct": 40,
+        "name": "Whisky"
+      },
+      {
+        "pct": 30,
+        "name": "Orange Juice"
+      },
+      {
+        "pct": 30,
+        "name": "Lemon Juice"
+      }
+    ]
+  },
+  {
+    "name": "Italian Cocktail",
+    "instructions": "Mescolare nel mixing glass. Servire nel calice con scorza d'arancia.",
+    "ingredients": [
+      {
+        "pct": 35,
+        "name": "Campari"
+      },
+      {
+        "pct": 35,
+        "name": "Sweet Vermouth"
+      },
+      {
+        "pct": 30,
+        "name": "Cognac"
+      }
     ]
   },
   {
     "name": "Jack Rose",
     "instructions": "Shake with ice. Serve in a chilled coupe.",
     "ingredients": [
-      { "pct": 60, "name": "Cognac" },
-      { "pct": 25, "name": "Lemon Juice" },
-      { "pct": 15, "name": "Simple Syrup" }
+      {
+        "pct": 60,
+        "name": "Cognac"
+      },
+      {
+        "pct": 25,
+        "name": "Lemon Juice"
+      },
+      {
+        "pct": 15,
+        "name": "Simple Syrup"
+      }
+    ]
+  },
+  {
+    "name": "Jamaica Cocktail",
+    "instructions": "Agitare con ghiaccio nel shaker. Servire nella coppa.",
+    "ingredients": [
+      {
+        "pct": 40,
+        "name": "Rum"
+      },
+      {
+        "pct": 35,
+        "name": "Coffee Liqueur"
+      },
+      {
+        "pct": 25,
+        "name": "Cointreau"
+      }
+    ]
+  },
+  {
+    "name": "Jamaica Ginger",
+    "instructions": "Mescolare nel bicchiere basso su ghiaccio. Servire con scorza di lime.",
+    "ingredients": [
+      {
+        "pct": 60,
+        "name": "Rum"
+      },
+      {
+        "pct": 20,
+        "name": "Water"
+      },
+      {
+        "pct": 10,
+        "name": "Simple Syrup"
+      },
+      {
+        "pct": 10,
+        "name": "Angostura"
+      }
+    ]
+  },
+  {
+    "name": "Japan",
+    "instructions": "Agitare nel shaker con ghiaccio. Servire con scorza di limone.",
+    "ingredients": [
+      {
+        "pct": 60,
+        "name": "Cognac"
+      },
+      {
+        "pct": 20,
+        "name": "Orange Juice"
+      },
+      {
+        "pct": 15,
+        "name": "Simple Syrup"
+      },
+      {
+        "pct": 5,
+        "name": "Angostura"
+      }
+    ]
+  },
+  {
+    "name": "Jersey",
+    "instructions": "Agitare nello shaker con ghiaccio. Filtrare nella coppa.",
+    "ingredients": [
+      {
+        "pct": 50,
+        "name": "Cognac"
+      },
+      {
+        "pct": 25,
+        "name": "Apricot Liqueur"
+      },
+      {
+        "pct": 20,
+        "name": "Lemon Juice"
+      },
+      {
+        "pct": 5,
+        "name": "Angostura"
+      }
+    ]
+  },
+  {
+    "name": "Jockey Club",
+    "instructions": "Agitare con ghiaccio nel shaker. Servire nella coppa da cocktail.",
+    "ingredients": [
+      {
+        "pct": 50,
+        "name": "Gin"
+      },
+      {
+        "pct": 25,
+        "name": "Cointreau"
+      },
+      {
+        "pct": 20,
+        "name": "Lemon Juice"
+      },
+      {
+        "pct": 5,
+        "name": "Angostura"
+      }
+    ]
+  },
+  {
+    "name": "Journalist",
+    "instructions": "Agitare nello shaker con ghiaccio. Filtrare nel bicchiere da cocktail.",
+    "ingredients": [
+      {
+        "pct": 30,
+        "name": "Gin"
+      },
+      {
+        "pct": 25,
+        "name": "Sweet Vermouth"
+      },
+      {
+        "pct": 25,
+        "name": "Dry Vermouth"
+      },
+      {
+        "pct": 15,
+        "name": "Lemon Juice"
+      },
+      {
+        "pct": 5,
+        "name": "Angostura"
+      }
+    ]
+  },
+  {
+    "name": "Judge Jr.",
+    "instructions": "Agitare nello shaker con ghiaccio. Servire nella coppa.",
+    "ingredients": [
+      {
+        "pct": 40,
+        "name": "Gin"
+      },
+      {
+        "pct": 30,
+        "name": "Rum"
+      },
+      {
+        "pct": 20,
+        "name": "Lemon Juice"
+      },
+      {
+        "pct": 10,
+        "name": "Simple Syrup"
+      }
     ]
   },
   {
     "name": "Kentucky",
     "instructions": "Shake with ice. Serve cold.",
     "ingredients": [
-      { "pct": 60, "name": "Whisky" },
-      { "pct": 20, "name": "Cointreau" },
-      { "pct": 20, "name": "Lemon Juice" }
+      {
+        "pct": 60,
+        "name": "Whisky"
+      },
+      {
+        "pct": 20,
+        "name": "Cointreau"
+      },
+      {
+        "pct": 20,
+        "name": "Lemon Juice"
+      }
+    ]
+  },
+  {
+    "name": "Knickerbocker",
+    "instructions": "Agitare bene con ghiaccio. Servire nella coppa.",
+    "ingredients": [
+      {
+        "pct": 40,
+        "name": "Rum"
+      },
+      {
+        "pct": 25,
+        "name": "Cointreau"
+      },
+      {
+        "pct": 20,
+        "name": "Orange Juice"
+      },
+      {
+        "pct": 15,
+        "name": "Lemon Juice"
+      }
+    ]
+  },
+  {
+    "name": "Knockout",
+    "instructions": "Mescolare nel mixing glass con ghiaccio. Servire nella coppa da cocktail.",
+    "ingredients": [
+      {
+        "pct": 40,
+        "name": "Gin"
+      },
+      {
+        "pct": 30,
+        "name": "Dry Vermouth"
+      },
+      {
+        "pct": 20,
+        "name": "Absinthe"
+      },
+      {
+        "pct": 10,
+        "name": "Crème de Menthe"
+      }
+    ]
+  },
+  {
+    "name": "Lady Be Good",
+    "instructions": "Agitare nel shaker con ghiaccio. Servire nella coppa da cocktail.",
+    "ingredients": [
+      {
+        "pct": 45,
+        "name": "Cognac"
+      },
+      {
+        "pct": 35,
+        "name": "Sweet Vermouth"
+      },
+      {
+        "pct": 20,
+        "name": "Crème de Menthe"
+      }
     ]
   },
   {
     "name": "Last Word",
     "instructions": "Shake with ice. Serve in a chilled coupe.",
     "ingredients": [
-      { "pct": 25, "name": "Gin" },
-      { "pct": 25, "name": "Chartreuse" },
-      { "pct": 25, "name": "Cointreau" },
-      { "pct": 25, "name": "Lemon Juice" }
+      {
+        "pct": 25,
+        "name": "Gin"
+      },
+      {
+        "pct": 25,
+        "name": "Chartreuse"
+      },
+      {
+        "pct": 25,
+        "name": "Cointreau"
+      },
+      {
+        "pct": 25,
+        "name": "Lemon Juice"
+      }
     ]
   },
   {
     "name": "Leap Year",
     "instructions": "Shake with ice. Serve with a lemon twist.",
     "ingredients": [
-      { "pct": 60, "name": "Gin" },
-      { "pct": 20, "name": "Sweet Vermouth" },
-      { "pct": 10, "name": "Orange Liqueur" },
-      { "pct": 10, "name": "Lemon Juice" }
+      {
+        "pct": 60,
+        "name": "Gin"
+      },
+      {
+        "pct": 20,
+        "name": "Sweet Vermouth"
+      },
+      {
+        "pct": 10,
+        "name": "Orange Liqueur"
+      },
+      {
+        "pct": 10,
+        "name": "Lemon Juice"
+      }
+    ]
+  },
+  {
+    "name": "Leave It to Me",
+    "instructions": "Agitare nello shaker con ghiaccio. Filtrare nella coppa.",
+    "ingredients": [
+      {
+        "pct": 40,
+        "name": "Gin"
+      },
+      {
+        "pct": 25,
+        "name": "Dry Vermouth"
+      },
+      {
+        "pct": 25,
+        "name": "Apricot Liqueur"
+      },
+      {
+        "pct": 10,
+        "name": "Lemon Juice"
+      }
     ]
   },
   {
     "name": "Liberal",
     "instructions": "Stir with ice. Serve with a cherry.",
     "ingredients": [
-      { "pct": 50, "name": "Whisky" },
-      { "pct": 40, "name": "Sweet Vermouth" },
-      { "pct": 10, "name": "Angostura" }
+      {
+        "pct": 50,
+        "name": "Whisky"
+      },
+      {
+        "pct": 40,
+        "name": "Sweet Vermouth"
+      },
+      {
+        "pct": 10,
+        "name": "Angostura"
+      }
+    ]
+  },
+  {
+    "name": "Lion's Tail",
+    "instructions": "Agitare vigorosamente con ghiaccio. Servire nella coppa.",
+    "ingredients": [
+      {
+        "pct": 50,
+        "name": "Whisky"
+      },
+      {
+        "pct": 25,
+        "name": "Cointreau"
+      },
+      {
+        "pct": 20,
+        "name": "Lemon Juice"
+      },
+      {
+        "pct": 5,
+        "name": "Angostura"
+      }
+    ]
+  },
+  {
+    "name": "Loch Lomond",
+    "instructions": "Mescolare nel mixing glass. Servire nel bicchiere basso su ghiaccio.",
+    "ingredients": [
+      {
+        "pct": 70,
+        "name": "Whisky"
+      },
+      {
+        "pct": 20,
+        "name": "Simple Syrup"
+      },
+      {
+        "pct": 10,
+        "name": "Angostura"
+      }
+    ]
+  },
+  {
+    "name": "Lone Tree",
+    "instructions": "Agitare con ghiaccio nello shaker. Servire nella coppa da cocktail.",
+    "ingredients": [
+      {
+        "pct": 35,
+        "name": "Gin"
+      },
+      {
+        "pct": 25,
+        "name": "Sweet Vermouth"
+      },
+      {
+        "pct": 25,
+        "name": "Dry Vermouth"
+      },
+      {
+        "pct": 15,
+        "name": "Orange Juice"
+      }
+    ]
+  },
+  {
+    "name": "Luzon",
+    "instructions": "Agitare nello shaker con ghiaccio. Servire nella coppa.",
+    "ingredients": [
+      {
+        "pct": 45,
+        "name": "Rum"
+      },
+      {
+        "pct": 35,
+        "name": "Dry Vermouth"
+      },
+      {
+        "pct": 20,
+        "name": "Orange Juice"
+      }
     ]
   },
   {
     "name": "Macallè Cocktail",
     "instructions": "Shake with ice. Serve with a candied cherry.",
     "ingredients": [
-      { "pct": 50, "name": "Select" },
-      { "pct": 30, "name": "Dry Vermouth" },
-      { "pct": 10, "name": "Cognac" },
-      { "pct": 10, "name": "China Bitter" }
+      {
+        "pct": 50,
+        "name": "Select"
+      },
+      {
+        "pct": 30,
+        "name": "Dry Vermouth"
+      },
+      {
+        "pct": 10,
+        "name": "Cognac"
+      },
+      {
+        "pct": 10,
+        "name": "China Bitter"
+      }
     ]
   },
   {
     "name": "Maiden's Prayer",
     "instructions": "Shake with ice. Serve in a chilled coupe.",
     "ingredients": [
-      { "pct": 50, "name": "Gin" },
-      { "pct": 30, "name": "Cointreau" },
-      { "pct": 20, "name": "Lemon Juice" }
+      {
+        "pct": 50,
+        "name": "Gin"
+      },
+      {
+        "pct": 30,
+        "name": "Cointreau"
+      },
+      {
+        "pct": 20,
+        "name": "Lemon Juice"
+      }
     ]
   },
   {
     "name": "Manhattan",
     "instructions": "Stir in a mixing glass with ice. Serve with a maraschino cherry.",
     "ingredients": [
-      { "pct": 60, "name": "Whisky" },
-      { "pct": 30, "name": "Sweet Vermouth" },
-      { "pct": 10, "name": "Angostura" }
+      {
+        "pct": 60,
+        "name": "Whisky"
+      },
+      {
+        "pct": 30,
+        "name": "Sweet Vermouth"
+      },
+      {
+        "pct": 10,
+        "name": "Angostura"
+      }
     ]
   },
   {
     "name": "Maresciallo De Bono",
     "instructions": "Shake with ice. Serve with a lemon twist.",
     "ingredients": [
-      { "pct": 50, "name": "Sweet Vermouth" },
-      { "pct": 25, "name": "Cognac" },
-      { "pct": 25, "name": "Orange Liqueur" }
+      {
+        "pct": 50,
+        "name": "Sweet Vermouth"
+      },
+      {
+        "pct": 25,
+        "name": "Cognac"
+      },
+      {
+        "pct": 25,
+        "name": "Orange Liqueur"
+      }
+    ]
+  },
+  {
+    "name": "Marguerite",
+    "instructions": "Mescolare nel mixing glass con ghiaccio. Servire nel bicchiere da cocktail.",
+    "ingredients": [
+      {
+        "pct": 45,
+        "name": "Gin"
+      },
+      {
+        "pct": 35,
+        "name": "Dry Vermouth"
+      },
+      {
+        "pct": 15,
+        "name": "Cointreau"
+      },
+      {
+        "pct": 5,
+        "name": "Angostura"
+      }
+    ]
+  },
+  {
+    "name": "Maxim",
+    "instructions": "Mescolare nel mixing glass. Filtrare nella coppa.",
+    "ingredients": [
+      {
+        "pct": 50,
+        "name": "Gin"
+      },
+      {
+        "pct": 35,
+        "name": "Dry Vermouth"
+      },
+      {
+        "pct": 15,
+        "name": "Crème de Menthe"
+      }
+    ]
+  },
+  {
+    "name": "Metropolitan",
+    "instructions": "Mescolare nel mixing glass con ghiaccio. Filtrare nel bicchiere da cocktail.",
+    "ingredients": [
+      {
+        "pct": 45,
+        "name": "Cognac"
+      },
+      {
+        "pct": 30,
+        "name": "Sweet Vermouth"
+      },
+      {
+        "pct": 20,
+        "name": "Cointreau"
+      },
+      {
+        "pct": 5,
+        "name": "Angostura"
+      }
+    ]
+  },
+  {
+    "name": "Miami",
+    "instructions": "Agitare nello shaker con ghiaccio. Servire nella coppa.",
+    "ingredients": [
+      {
+        "pct": 45,
+        "name": "Rum"
+      },
+      {
+        "pct": 30,
+        "name": "Crème de Menthe"
+      },
+      {
+        "pct": 25,
+        "name": "Cointreau"
+      }
     ]
   },
   {
     "name": "Millionaire",
     "instructions": "Shake with ice. Serve in a chilled coupe.",
     "ingredients": [
-      { "pct": 60, "name": "Rum" },
-      { "pct": 20, "name": "Cointreau" },
-      { "pct": 10, "name": "Apricot Liqueur" },
-      { "pct": 10, "name": "Lemon Juice" }
+      {
+        "pct": 60,
+        "name": "Rum"
+      },
+      {
+        "pct": 20,
+        "name": "Cointreau"
+      },
+      {
+        "pct": 10,
+        "name": "Apricot Liqueur"
+      },
+      {
+        "pct": 10,
+        "name": "Lemon Juice"
+      }
+    ]
+  },
+  {
+    "name": "Monte Carlo",
+    "instructions": "Mescolare nel mixing glass. Filtrare nel bicchiere da cocktail.",
+    "ingredients": [
+      {
+        "pct": 55,
+        "name": "Whisky"
+      },
+      {
+        "pct": 35,
+        "name": "Bénédictine"
+      },
+      {
+        "pct": 10,
+        "name": "Angostura"
+      }
+    ]
+  },
+  {
+    "name": "Moonraker",
+    "instructions": "Agitare con ghiaccio nel shaker. Servire nella coppa da cocktail.",
+    "ingredients": [
+      {
+        "pct": 45,
+        "name": "Cognac"
+      },
+      {
+        "pct": 25,
+        "name": "Dry Vermouth"
+      },
+      {
+        "pct": 20,
+        "name": "Apricot Liqueur"
+      },
+      {
+        "pct": 10,
+        "name": "Anisette"
+      }
+    ]
+  },
+  {
+    "name": "Morning Glory",
+    "instructions": "Agitare nello shaker con ghiaccio abbondante. Servire nella coppa.",
+    "ingredients": [
+      {
+        "pct": 35,
+        "name": "Cognac"
+      },
+      {
+        "pct": 35,
+        "name": "Whisky"
+      },
+      {
+        "pct": 15,
+        "name": "Absinthe"
+      },
+      {
+        "pct": 10,
+        "name": "Simple Syrup"
+      },
+      {
+        "pct": 5,
+        "name": "Angostura"
+      }
     ]
   },
   {
     "name": "Napoleon",
     "instructions": "Stir with ice. Serve with an orange twist.",
     "ingredients": [
-      { "pct": 50, "name": "Cognac" },
-      { "pct": 30, "name": "Orange Liqueur" },
-      { "pct": 20, "name": "Campari" }
+      {
+        "pct": 50,
+        "name": "Cognac"
+      },
+      {
+        "pct": 30,
+        "name": "Orange Liqueur"
+      },
+      {
+        "pct": 20,
+        "name": "Campari"
+      }
     ]
   },
   {
     "name": "Negroni",
     "instructions": "Stir directly in the glass with ice. Serve with an orange twist.",
     "ingredients": [
-      { "pct": 34, "name": "Campari" },
-      { "pct": 33, "name": "Gin" },
-      { "pct": 33, "name": "Sweet Vermouth" }
+      {
+        "pct": 34,
+        "name": "Campari"
+      },
+      {
+        "pct": 33,
+        "name": "Gin"
+      },
+      {
+        "pct": 33,
+        "name": "Sweet Vermouth"
+      }
     ]
   },
   {
     "name": "Oh Henry",
     "instructions": "Shake with ice. Serve cold.",
     "ingredients": [
-      { "pct": 50, "name": "Whisky" },
-      { "pct": 25, "name": "Bénédictine" },
-      { "pct": 25, "name": "Lemon Juice" }
+      {
+        "pct": 50,
+        "name": "Whisky"
+      },
+      {
+        "pct": 25,
+        "name": "Bénédictine"
+      },
+      {
+        "pct": 25,
+        "name": "Lemon Juice"
+      }
     ]
   },
   {
     "name": "Old Fashioned",
     "instructions": "Muddle sugar with Angostura in the glass. Add whisky and ice.",
     "ingredients": [
-      { "pct": 80, "name": "Whisky" },
-      { "pct": 10, "name": "Sugar" },
-      { "pct": 10, "name": "Angostura" }
+      {
+        "pct": 80,
+        "name": "Whisky"
+      },
+      {
+        "pct": 10,
+        "name": "Sugar"
+      },
+      {
+        "pct": 10,
+        "name": "Angostura"
+      }
     ]
   },
   {
     "name": "Orange Blossom",
     "instructions": "Shake with ice. Serve cold.",
     "ingredients": [
-      { "pct": 60, "name": "Gin" },
-      { "pct": 40, "name": "Orange Juice" }
+      {
+        "pct": 60,
+        "name": "Gin"
+      },
+      {
+        "pct": 40,
+        "name": "Orange Juice"
+      }
     ]
   },
   {
     "name": "Paradise Cocktail",
     "instructions": "Shake with ice. Serve cold.",
     "ingredients": [
-      { "pct": 50, "name": "Gin" },
-      { "pct": 30, "name": "Apricot Liqueur" },
-      { "pct": 20, "name": "Orange Juice" }
+      {
+        "pct": 50,
+        "name": "Gin"
+      },
+      {
+        "pct": 30,
+        "name": "Apricot Liqueur"
+      },
+      {
+        "pct": 20,
+        "name": "Orange Juice"
+      }
     ]
   },
   {
     "name": "Perfect Manhattan",
     "instructions": "Stir with ice. Serve with a cherry.",
     "ingredients": [
-      { "pct": 60, "name": "Whisky" },
-      { "pct": 20, "name": "Sweet Vermouth" },
-      { "pct": 20, "name": "Dry Vermouth" }
+      {
+        "pct": 60,
+        "name": "Whisky"
+      },
+      {
+        "pct": 20,
+        "name": "Sweet Vermouth"
+      },
+      {
+        "pct": 20,
+        "name": "Dry Vermouth"
+      }
     ]
   },
   {
     "name": "Pink Gin",
     "instructions": "Rinse the glass with Angostura and discard. Add cold gin.",
     "ingredients": [
-      { "pct": 90, "name": "Gin" },
-      { "pct": 10, "name": "Angostura" }
+      {
+        "pct": 90,
+        "name": "Gin"
+      },
+      {
+        "pct": 10,
+        "name": "Angostura"
+      }
     ]
   },
   {
     "name": "Polo",
     "instructions": "Shake with ice. Serve cold.",
     "ingredients": [
-      { "pct": 50, "name": "Gin" },
-      { "pct": 25, "name": "Lemon Juice" },
-      { "pct": 25, "name": "Orange Juice" }
+      {
+        "pct": 50,
+        "name": "Gin"
+      },
+      {
+        "pct": 25,
+        "name": "Lemon Juice"
+      },
+      {
+        "pct": 25,
+        "name": "Orange Juice"
+      }
+    ]
+  },
+  {
+    "name": "Preakness",
+    "instructions": "Mescolare nel mixing glass con ghiaccio. Servire nel bicchiere da cocktail.",
+    "ingredients": [
+      {
+        "pct": 45,
+        "name": "Whisky"
+      },
+      {
+        "pct": 35,
+        "name": "Sweet Vermouth"
+      },
+      {
+        "pct": 15,
+        "name": "Bénédictine"
+      },
+      {
+        "pct": 5,
+        "name": "Angostura"
+      }
     ]
   },
   {
     "name": "Princeton",
     "instructions": "Stir with ice. Serve with a lemon twist.",
     "ingredients": [
-      { "pct": 70, "name": "Gin" },
-      { "pct": 20, "name": "Dry Vermouth" },
-      { "pct": 10, "name": "Angostura" }
+      {
+        "pct": 70,
+        "name": "Gin"
+      },
+      {
+        "pct": 20,
+        "name": "Dry Vermouth"
+      },
+      {
+        "pct": 10,
+        "name": "Angostura"
+      }
     ]
   },
   {
     "name": "Queen's Park",
     "instructions": "Shake with ice. Serve cold.",
     "ingredients": [
-      { "pct": 70, "name": "Rum" },
-      { "pct": 20, "name": "Lemon Juice" },
-      { "pct": 10, "name": "Simple Syrup" }
+      {
+        "pct": 70,
+        "name": "Rum"
+      },
+      {
+        "pct": 20,
+        "name": "Lemon Juice"
+      },
+      {
+        "pct": 10,
+        "name": "Simple Syrup"
+      }
     ]
   },
   {
     "name": "Rattlesnake",
     "instructions": "Shake vigorously with ice. Serve very cold.",
     "ingredients": [
-      { "pct": 70, "name": "Whisky" },
-      { "pct": 20, "name": "Lemon Juice" },
-      { "pct": 10, "name": "Absinthe" }
+      {
+        "pct": 70,
+        "name": "Whisky"
+      },
+      {
+        "pct": 20,
+        "name": "Lemon Juice"
+      },
+      {
+        "pct": 10,
+        "name": "Absinthe"
+      }
     ]
   },
   {
     "name": "Rob Roy",
     "instructions": "Stir with ice. Serve with a cherry.",
     "ingredients": [
-      { "pct": 60, "name": "Whisky" },
-      { "pct": 30, "name": "Sweet Vermouth" },
-      { "pct": 10, "name": "Angostura" }
+      {
+        "pct": 60,
+        "name": "Whisky"
+      },
+      {
+        "pct": 30,
+        "name": "Sweet Vermouth"
+      },
+      {
+        "pct": 10,
+        "name": "Angostura"
+      }
+    ]
+  },
+  {
+    "name": "Rolls Royce",
+    "instructions": "Mescolare nel mixing glass con ghiaccio. Filtrare nel bicchiere da cocktail.",
+    "ingredients": [
+      {
+        "pct": 30,
+        "name": "Gin"
+      },
+      {
+        "pct": 30,
+        "name": "Sweet Vermouth"
+      },
+      {
+        "pct": 25,
+        "name": "Dry Vermouth"
+      },
+      {
+        "pct": 15,
+        "name": "Bénédictine"
+      }
     ]
   },
   {
     "name": "Rose",
     "instructions": "Shake with ice. Serve cold.",
     "ingredients": [
-      { "pct": 60, "name": "Dry Vermouth" },
-      { "pct": 20, "name": "Cognac" },
-      { "pct": 20, "name": "Apricot Liqueur" }
+      {
+        "pct": 60,
+        "name": "Dry Vermouth"
+      },
+      {
+        "pct": 20,
+        "name": "Cognac"
+      },
+      {
+        "pct": 20,
+        "name": "Apricot Liqueur"
+      }
     ]
   },
   {
     "name": "Scofflaw",
     "instructions": "Shake with ice. Serve cold.",
     "ingredients": [
-      { "pct": 40, "name": "Whisky" },
-      { "pct": 30, "name": "Dry Vermouth" },
-      { "pct": 20, "name": "Lemon Juice" },
-      { "pct": 10, "name": "Sugar" }
+      {
+        "pct": 40,
+        "name": "Whisky"
+      },
+      {
+        "pct": 30,
+        "name": "Dry Vermouth"
+      },
+      {
+        "pct": 20,
+        "name": "Lemon Juice"
+      },
+      {
+        "pct": 10,
+        "name": "Sugar"
+      }
     ]
   },
   {
     "name": "Self Starter",
     "instructions": "Shake with ice. Serve cold.",
     "ingredients": [
-      { "pct": 60, "name": "Gin" },
-      { "pct": 20, "name": "Apricot Liqueur" },
-      { "pct": 10, "name": "Cointreau" },
-      { "pct": 10, "name": "Absinthe" }
+      {
+        "pct": 60,
+        "name": "Gin"
+      },
+      {
+        "pct": 20,
+        "name": "Apricot Liqueur"
+      },
+      {
+        "pct": 10,
+        "name": "Cointreau"
+      },
+      {
+        "pct": 10,
+        "name": "Absinthe"
+      }
     ]
   },
   {
     "name": "Sensation",
     "instructions": "Shake with ice. Serve cold.",
     "ingredients": [
-      { "pct": 60, "name": "Gin" },
-      { "pct": 20, "name": "Lemon Juice" },
-      { "pct": 20, "name": "Bénédictine" }
+      {
+        "pct": 60,
+        "name": "Gin"
+      },
+      {
+        "pct": 20,
+        "name": "Lemon Juice"
+      },
+      {
+        "pct": 20,
+        "name": "Bénédictine"
+      }
+    ]
+  },
+  {
+    "name": "Shamrock",
+    "instructions": "Mescolare nel mixing glass. Servire nella coppa da cocktail.",
+    "ingredients": [
+      {
+        "pct": 35,
+        "name": "Gin"
+      },
+      {
+        "pct": 30,
+        "name": "Dry Vermouth"
+      },
+      {
+        "pct": 20,
+        "name": "Chartreuse"
+      },
+      {
+        "pct": 15,
+        "name": "Crème de Menthe"
+      }
     ]
   },
   {
     "name": "Side Car",
     "instructions": "Shake with ice. Serve in a sugar-rimmed coupe.",
     "ingredients": [
-      { "pct": 40, "name": "Cognac" },
-      { "pct": 40, "name": "Cointreau" },
-      { "pct": 20, "name": "Lemon Juice" }
+      {
+        "pct": 40,
+        "name": "Cognac"
+      },
+      {
+        "pct": 40,
+        "name": "Cointreau"
+      },
+      {
+        "pct": 20,
+        "name": "Lemon Juice"
+      }
     ]
   },
   {
     "name": "Singapore Sling",
     "instructions": "Shake with ice. Serve long with soda and a cherry.",
     "ingredients": [
-      { "pct": 50, "name": "Gin" },
-      { "pct": 25, "name": "Chartreuse" },
-      { "pct": 15, "name": "Lemon Juice" },
-      { "pct": 10, "name": "Simple Syrup" }
+      {
+        "pct": 50,
+        "name": "Gin"
+      },
+      {
+        "pct": 25,
+        "name": "Chartreuse"
+      },
+      {
+        "pct": 15,
+        "name": "Lemon Juice"
+      },
+      {
+        "pct": 10,
+        "name": "Simple Syrup"
+      }
+    ]
+  },
+  {
+    "name": "Soul Kiss",
+    "instructions": "Agitare nello shaker con ghiaccio. Servire nella coppa.",
+    "ingredients": [
+      {
+        "pct": 35,
+        "name": "Whisky"
+      },
+      {
+        "pct": 25,
+        "name": "Sweet Vermouth"
+      },
+      {
+        "pct": 25,
+        "name": "Dry Vermouth"
+      },
+      {
+        "pct": 15,
+        "name": "Orange Juice"
+      }
     ]
   },
   {
     "name": "Stinger",
     "instructions": "Shake with ice. Serve very cold.",
     "ingredients": [
-      { "pct": 70, "name": "Cognac" },
-      { "pct": 30, "name": "Crème de Menthe" }
+      {
+        "pct": 70,
+        "name": "Cognac"
+      },
+      {
+        "pct": 30,
+        "name": "Crème de Menthe"
+      }
     ]
   },
   {
     "name": "Three Miller",
     "instructions": "Shake with ice. Serve cold.",
     "ingredients": [
-      { "pct": 60, "name": "Cognac" },
-      { "pct": 25, "name": "Rum" },
-      { "pct": 15, "name": "Cointreau" }
+      {
+        "pct": 60,
+        "name": "Cognac"
+      },
+      {
+        "pct": 25,
+        "name": "Rum"
+      },
+      {
+        "pct": 15,
+        "name": "Cointreau"
+      }
+    ]
+  },
+  {
+    "name": "Trilby",
+    "instructions": "Mescolare nel mixing glass con ghiaccio. Filtrare nel calice.",
+    "ingredients": [
+      {
+        "pct": 50,
+        "name": "Whisky"
+      },
+      {
+        "pct": 40,
+        "name": "Sweet Vermouth"
+      },
+      {
+        "pct": 10,
+        "name": "Absinthe"
+      }
     ]
   },
   {
     "name": "Trinity",
     "instructions": "Stir with ice. Serve with a lemon twist.",
     "ingredients": [
-      { "pct": 34, "name": "Gin" },
-      { "pct": 33, "name": "Dry Vermouth" },
-      { "pct": 33, "name": "Sweet Vermouth" }
+      {
+        "pct": 34,
+        "name": "Gin"
+      },
+      {
+        "pct": 33,
+        "name": "Dry Vermouth"
+      },
+      {
+        "pct": 33,
+        "name": "Sweet Vermouth"
+      }
     ]
   },
   {
     "name": "Tuxedo",
     "instructions": "Stir with ice. Serve with a lemon twist.",
     "ingredients": [
-      { "pct": 60, "name": "Gin" },
-      { "pct": 30, "name": "Dry Vermouth" },
-      { "pct": 10, "name": "Absinthe" }
+      {
+        "pct": 60,
+        "name": "Gin"
+      },
+      {
+        "pct": 30,
+        "name": "Dry Vermouth"
+      },
+      {
+        "pct": 10,
+        "name": "Absinthe"
+      }
+    ]
+  },
+  {
+    "name": "Twentieth Century",
+    "instructions": "Agitare nello shaker con ghiaccio. Servire nella coppa da cocktail.",
+    "ingredients": [
+      {
+        "pct": 35,
+        "name": "Gin"
+      },
+      {
+        "pct": 25,
+        "name": "Dry Vermouth"
+      },
+      {
+        "pct": 20,
+        "name": "Cointreau"
+      },
+      {
+        "pct": 20,
+        "name": "Lemon Juice"
+      }
+    ]
+  },
+  {
+    "name": "Ulanda",
+    "instructions": "Agitare con ghiaccio nello shaker. Servire nella coppa.",
+    "ingredients": [
+      {
+        "pct": 45,
+        "name": "Gin"
+      },
+      {
+        "pct": 35,
+        "name": "Cointreau"
+      },
+      {
+        "pct": 20,
+        "name": "Absinthe"
+      }
     ]
   },
   {
     "name": "Vanderbilt",
     "instructions": "Stir with ice. Serve with a cherry.",
     "ingredients": [
-      { "pct": 50, "name": "Cognac" },
-      { "pct": 30, "name": "Cointreau" },
-      { "pct": 20, "name": "Angostura" }
+      {
+        "pct": 50,
+        "name": "Cognac"
+      },
+      {
+        "pct": 30,
+        "name": "Cointreau"
+      },
+      {
+        "pct": 20,
+        "name": "Angostura"
+      }
+    ]
+  },
+  {
+    "name": "Velocity",
+    "instructions": "Agitare nello shaker con ghiaccio. Servire nella coppa da cocktail.",
+    "ingredients": [
+      {
+        "pct": 40,
+        "name": "Gin"
+      },
+      {
+        "pct": 30,
+        "name": "Sweet Vermouth"
+      },
+      {
+        "pct": 30,
+        "name": "Orange Juice"
+      }
     ]
   },
   {
     "name": "Ward Eight",
     "instructions": "Shake with ice. Serve cold.",
     "ingredients": [
-      { "pct": 60, "name": "Whisky" },
-      { "pct": 20, "name": "Lemon Juice" },
-      { "pct": 10, "name": "Orange Juice" },
-      { "pct": 10, "name": "Simple Syrup" }
+      {
+        "pct": 60,
+        "name": "Whisky"
+      },
+      {
+        "pct": 20,
+        "name": "Lemon Juice"
+      },
+      {
+        "pct": 10,
+        "name": "Orange Juice"
+      },
+      {
+        "pct": 10,
+        "name": "Simple Syrup"
+      }
+    ]
+  },
+  {
+    "name": "Wedding Belle",
+    "instructions": "Agitare nel shaker con ghiaccio. Filtrare nella coppa da cocktail.",
+    "ingredients": [
+      {
+        "pct": 30,
+        "name": "Gin"
+      },
+      {
+        "pct": 30,
+        "name": "Cognac"
+      },
+      {
+        "pct": 25,
+        "name": "Campari"
+      },
+      {
+        "pct": 15,
+        "name": "Orange Juice"
+      }
     ]
   },
   {
     "name": "Weeski",
     "instructions": "Stir with ice. Serve with a lemon twist.",
     "ingredients": [
-      { "pct": 60, "name": "Whisky" },
-      { "pct": 20, "name": "Dry Vermouth" },
-      { "pct": 20, "name": "Cointreau" }
+      {
+        "pct": 60,
+        "name": "Whisky"
+      },
+      {
+        "pct": 20,
+        "name": "Dry Vermouth"
+      },
+      {
+        "pct": 20,
+        "name": "Cointreau"
+      }
     ]
   },
   {
     "name": "Welcome Stranger",
     "instructions": "Shake with ice. Serve cold.",
     "ingredients": [
-      { "pct": 40, "name": "Gin" },
-      { "pct": 20, "name": "Rum" },
-      { "pct": 20, "name": "Cognac" },
-      { "pct": 20, "name": "Lemon Juice" }
+      {
+        "pct": 40,
+        "name": "Gin"
+      },
+      {
+        "pct": 20,
+        "name": "Rum"
+      },
+      {
+        "pct": 20,
+        "name": "Cognac"
+      },
+      {
+        "pct": 20,
+        "name": "Lemon Juice"
+      }
+    ]
+  },
+  {
+    "name": "Whip",
+    "instructions": "Agitare con ghiaccio nel shaker. Servire nella coppa.",
+    "ingredients": [
+      {
+        "pct": 45,
+        "name": "Cognac"
+      },
+      {
+        "pct": 30,
+        "name": "Dry Vermouth"
+      },
+      {
+        "pct": 20,
+        "name": "Orange Liqueur"
+      },
+      {
+        "pct": 5,
+        "name": "Absinthe"
+      }
     ]
   },
   {
     "name": "White Lady",
     "instructions": "Shake with ice. Serve in a chilled coupe.",
     "ingredients": [
-      { "pct": 60, "name": "Gin" },
-      { "pct": 20, "name": "Cointreau" },
-      { "pct": 20, "name": "Lemon Juice" }
+      {
+        "pct": 60,
+        "name": "Gin"
+      },
+      {
+        "pct": 20,
+        "name": "Cointreau"
+      },
+      {
+        "pct": 20,
+        "name": "Lemon Juice"
+      }
     ]
   },
   {
     "name": "Widow's Kiss",
     "instructions": "Stir with ice. Serve chilled.",
     "ingredients": [
-      { "pct": 50, "name": "Cognac" },
-      { "pct": 25, "name": "Chartreuse" },
-      { "pct": 25, "name": "Bénédictine" }
+      {
+        "pct": 50,
+        "name": "Cognac"
+      },
+      {
+        "pct": 25,
+        "name": "Chartreuse"
+      },
+      {
+        "pct": 25,
+        "name": "Bénédictine"
+      }
     ]
   },
   {
     "name": "Yale",
     "instructions": "Stir with ice. Serve with a lemon twist.",
     "ingredients": [
-      { "pct": 70, "name": "Gin" },
-      { "pct": 20, "name": "Dry Vermouth" },
-      { "pct": 10, "name": "Anisette" }
+      {
+        "pct": 70,
+        "name": "Gin"
+      },
+      {
+        "pct": 20,
+        "name": "Dry Vermouth"
+      },
+      {
+        "pct": 10,
+        "name": "Anisette"
+      }
     ]
   }
 ]

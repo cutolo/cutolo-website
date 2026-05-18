@@ -42,18 +42,20 @@ const LiquidShader = (() => {
       return sum;
     }
 
-    // Pattern 1: Small geometric pulp dots (Orange Juice)
+    // Pattern 1: Pulp dots (Orange Juice) — organic scattered distribution
     float bubblesPat(vec2 uv) {
-      vec2 grid = uv * vec2(16.0, 18.0);
+      vec2 grid = uv * vec2(14.0, 16.0);
       vec2 id   = floor(grid);
       vec2 cell = fract(grid);
-      float rowOffset = mod(id.y, 2.0) * 0.5;
-      float seed = hash(id);
-      vec2 center = vec2(0.5 + rowOffset, 0.5);
-      center.x = fract(center.x);
-      center += (vec2(hash(id + 2.1), hash(id + 8.7)) - 0.5) * 0.12;
-      float r = 0.035 + seed * 0.012;
-      return 1.0 - smoothstep(r - 0.008, r + 0.008, length(cell - center));
+      float seed  = hash(id);
+      float seed2 = hash(id + 5.13);
+      float seed3 = hash(id + 17.4);
+      // Fully random center — no staggered row offset
+      vec2 center = vec2(0.15 + seed2 * 0.70, 0.15 + seed3 * 0.70);
+      float r = 0.050 + seed * 0.022;
+      float d = 1.0 - smoothstep(r - 0.010, r + 0.010, length(cell - center));
+      // ~18% of cells empty — breaks up the uniform density
+      return d * step(0.18, seed);
     }
 
     // Pattern 2: Fine wavy stripes (Lemon Juice)
@@ -74,30 +76,62 @@ const LiquidShader = (() => {
       return 1.0 - smoothstep(r - 0.018, r + 0.018, length(cell - vec2(cx, cy)));
     }
 
-    // Pattern 4: Static grain (Cognac, Whisky) — baked texture, no animation
-    // Large multipliers give well-distributed randomness with no visible period
+    // Pattern 4: Static grain (Cognac, Whisky)
+    // Uses a precision-safe hash: screen-space coords can reach ~960, making
+    // sin(coord * 127.1 * 127.1 * 43758) overflow float32 and produce banding.
+    // Folding with fract() first keeps intermediate values in [0,1].
     float grainPat() {
-      return hash(floor(gl_FragCoord.xy * 0.5) * vec2(127.1, 311.7));
+      vec2 px = fract(floor(gl_FragCoord.xy) * vec2(0.1031, 0.1030));
+      px += dot(px, px.yx + 33.33);
+      return fract((px.x + px.y) * px.x);
+    }
+
+    // Pattern 5: Organic leaf shapes (Crème de Menthe)
+    float leafPat(vec2 uv) {
+      vec2 grid = uv * vec2(5.0, 7.0);
+      vec2 id   = floor(grid);
+      vec2 cell = fract(grid);
+      float seed  = hash(id);
+      float seed2 = hash(id + 5.3);
+      float seed3 = hash(id + 9.7);
+      float seed4 = hash(id + 14.2);
+      // Fully random center — no staggered row offset
+      vec2 center = vec2(0.15 + seed2 * 0.70, 0.15 + seed3 * 0.70);
+      // Random rotation per cell
+      float angle = seed * 6.28318;
+      vec2  p   = cell - center;
+      float cs  = cos(angle), sn = sin(angle);
+      p = vec2(p.x * cs - p.y * sn, p.x * sn + p.y * cs);
+      // Elongated ellipse — pointed at tips via abs(pn.y) penalty
+      float a  = 0.065 + seed4 * 0.030;
+      float b  = 0.130 + seed  * 0.060;
+      vec2  pn = p / vec2(a, b);
+      float d  = length(pn) + abs(pn.y) * 0.35;
+      float leaf = 1.0 - smoothstep(0.80, 1.10, d);
+      // ~22% of cells empty — uneven clustering
+      return leaf * step(0.22, seed3);
     }
 
     float getPattern(float patId, vec2 uv) {
       if (patId < 1.5) return bubblesPat(uv);
       if (patId < 2.5) return waveStripesPat(uv);
-      return fizzPat(uv);
+      if (patId < 3.5) return fizzPat(uv);
+      return leafPat(uv);
     }
 
     vec3 applyPattern(vec3 col, float patId, vec2 uv) {
       if (patId < 0.5) {
         return col;
-      } else if (patId >= 3.5) {
+      } else if (patId >= 3.5 && patId < 4.5) {
         // Grain called directly — avoids speculative evaluation of other patterns
         return clamp(col + vec3((grainPat() - 0.5) * 0.06), 0.0, 1.0);
       } else {
         float p = getPattern(patId, uv);
         if (p < 0.001) return col;
-        if (patId < 1.5) return col + p * vec3(0.07);    // bubbles: lighter
-        if (patId < 2.5) return col * (1.0 - p * 0.08);  // stripes: denser
-        return col + p * vec3(0.05);                      // fizz: lighter
+        if (patId < 1.5) return col + p * vec3(0.12);         // bubbles: more visible
+        if (patId < 2.5) return col * (1.0 - p * 0.08);       // stripes: denser
+        if (patId < 3.5) return col + p * vec3(0.05);         // fizz: lighter
+        return col - p * vec3(0.04, 0.09, 0.04);              // leaves: darker green
       }
     }
 

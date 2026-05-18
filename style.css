@@ -6,6 +6,7 @@
 
 :root {
   --black: #000000;
+  --white: #ffffff;
   --font: 'Recursive', monospace;
   --top-ingredient-color: #D4B888;
   --bottom-ingredient-color: #E8A030;
@@ -38,8 +39,6 @@ body {
 #gl-canvas {
   position: fixed;
   inset: 0;
-  width: 100%;
-  height: var(--app-height);
   z-index: -1;
 }
 
@@ -58,7 +57,10 @@ header {
   padding: 40px 40px 32px;
 }
 
+header h1,
 header p {
+  font-size: inherit;
+  font-weight: 400;
   margin-bottom: 6px;
 }
 
@@ -70,9 +72,10 @@ header nav {
   margin-top: 20px;
 }
 
-/* Cocktail section: smaller, upright (not italic) */
 #cocktail {
   font-size: 12px;
+  font-style: normal;
+  font-variation-settings: 'slnt' 0;
   margin: 0 -40px -40px;
   padding: 28px 40px 40px;
 }
@@ -82,8 +85,10 @@ header nav {
 }
 
 #cocktail-name {
-  font-size: 12px;
+  font-size: inherit;
   font-weight: 700;
+  line-height: 1.3;
+  margin-bottom: 4px;
 }
 
 #cocktail-instructions {
@@ -156,6 +161,89 @@ a {
 #debug li:hover { font-weight: 700; }
 #debug li.active { font-weight: 700; }
 
+/* Course page */
+html.course-page,
+html.course-page body {
+  height: auto;
+  overflow: visible;
+  position: static;
+}
+
+html.course-page body {
+  background: var(--white);
+  min-height: var(--app-height);
+}
+
+.course-page main {
+  display: block;
+  height: auto;
+  overflow: visible;
+  padding: 40px;
+}
+
+.course-page .breadcrumb {
+  margin-bottom: 40px;
+}
+
+.course-page .breadcrumb .sep {
+  margin: 0 6px;
+}
+
+.course-page header {
+  margin: 0;
+  padding: 0;
+}
+
+.course-page h1 {
+  font-size: inherit;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.course-page .tagline {
+  margin-bottom: 12px;
+}
+
+.course-page section {
+  margin-top: 36px;
+}
+
+.course-page h2 {
+  font-size: inherit;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.course-page h3 {
+  font-size: inherit;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.course-page section p {
+  margin-bottom: 8px;
+}
+
+.course-page .learn-list {
+  list-style: none;
+}
+
+.course-page .learn-list li {
+  /* TODO(human): style the bullet/marker treatment for course list items */
+}
+
+.course-page .day {
+  margin-bottom: 20px;
+}
+
+.course-page .day:last-child {
+  margin-bottom: 0;
+}
+
+.course-page footer {
+  margin-top: 48px;
+}
+
 /* Mobile */
 @media (max-width: 767px) {
   html,
@@ -195,5 +283,15 @@ a {
   #cocktail-instructions,
   #cocktail-ingredients {
     line-height: 1.3;
+  }
+
+  html.course-page,
+  html.course-page body {
+    position: static;
+    inset: auto;
+  }
+
+  .course-page main {
+    padding: 24px;
   }
 }
