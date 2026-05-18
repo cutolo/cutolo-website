@@ -147,6 +147,7 @@ document.addEventListener('DOMContentLoaded', () => {
     .then(cocktails => {
       const idx = randomIndex(cocktails.length);
       loadCocktail(cocktails[idx]);
+      initDebugMenu(cocktails, idx);
       if (ok) {
         LiquidShader.start();
         const impactCooldown = 3.0;

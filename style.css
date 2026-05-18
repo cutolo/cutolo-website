@@ -236,6 +236,7 @@ html.course-page,
 html.course-page body {
   height: auto;
   overflow: visible;
+  overscroll-behavior: auto;
   position: static;
 }
 
