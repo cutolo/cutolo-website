@@ -88,7 +88,7 @@ const LiquidShader = (() => {
 
     // Pattern 5: Organic leaf shapes (Crème de Menthe)
     float leafPat(vec2 uv) {
-      vec2 grid = uv * vec2(5.0, 7.0);
+      vec2 grid = uv * vec2(8.0, 11.0);
       vec2 id   = floor(grid);
       vec2 cell = fract(grid);
       float seed  = hash(id);
@@ -103,8 +103,8 @@ const LiquidShader = (() => {
       float cs  = cos(angle), sn = sin(angle);
       p = vec2(p.x * cs - p.y * sn, p.x * sn + p.y * cs);
       // Elongated ellipse — pointed at tips via abs(pn.y) penalty
-      float a  = 0.065 + seed4 * 0.030;
-      float b  = 0.130 + seed  * 0.060;
+      float a  = 0.045 + seed4 * 0.020;
+      float b  = 0.090 + seed  * 0.040;
       vec2  pn = p / vec2(a, b);
       float d  = length(pn) + abs(pn.y) * 0.35;
       float leaf = 1.0 - smoothstep(0.80, 1.10, d);
