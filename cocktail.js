@@ -87,28 +87,47 @@ function loadCocktail(cocktail) {
 }
 
 function initDebugMenu(cocktails, activeIndex) {
-  const btn  = document.getElementById('debug-btn');
-  const menu = document.getElementById('debug');
-  const list = document.getElementById('debug-list');
+  const btn    = document.getElementById('debug-btn');
+  const menu   = document.getElementById('debug');
+  const list   = document.getElementById('debug-list');
+  const search = document.getElementById('debug-search');
+  const count  = document.getElementById('debug-count');
 
-  cocktails.forEach((c, i) => {
-    const li = document.createElement('li');
-    li.textContent = c.name;
-    if (i === activeIndex) li.classList.add('active');
-    li.onclick = () => {
-      list.querySelectorAll('li').forEach(el => el.classList.remove('active'));
-      li.classList.add('active');
-      loadCocktail(c);
-    };
-    list.appendChild(li);
-  });
+  let active = cocktails[activeIndex];
 
-  btn.onclick = () => { menu.hidden = !menu.hidden; };
+  function renderList(filter) {
+    const q = (filter || '').toLowerCase();
+    const visible = q ? cocktails.filter(c => c.name.toLowerCase().includes(q)) : cocktails;
+    list.innerHTML = '';
+    visible.forEach(c => {
+      const li = document.createElement('li');
+      li.textContent = c.name;
+      if (c === active) li.classList.add('active');
+      li.onclick = () => {
+        active = c;
+        renderList(search ? search.value : '');
+        loadCocktail(c);
+      };
+      list.appendChild(li);
+    });
+    if (count) count.textContent = q ? `${visible.length} / ${cocktails.length}` : `${cocktails.length} cocktails`;
+  }
+
+  renderList('');
+
+  if (search) search.addEventListener('input', e => renderList(e.target.value));
+
+  btn.onclick = () => {
+    menu.hidden = !menu.hidden;
+    if (!menu.hidden && search) setTimeout(() => search.focus(), 50);
+  };
 
   document.addEventListener('keydown', e => {
-    if (e.key === 'd' && !e.ctrlKey && !e.metaKey && !e.altKey) {
+    if (e.key === 'd' && !e.ctrlKey && !e.metaKey && !e.altKey && e.target.tagName !== 'INPUT') {
       menu.hidden = !menu.hidden;
+      if (!menu.hidden && search) setTimeout(() => search.focus(), 50);
     }
+    if (e.key === 'Escape' && !menu.hidden) menu.hidden = true;
   });
 }
 

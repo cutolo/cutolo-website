@@ -110,56 +110,126 @@ a {
 /* Debug menu */
 #debug-btn {
   position: fixed;
-  display: none;
+  display: block;
   bottom: 16px;
   right: 16px;
-  background: rgba(0, 0, 0, 0.12);
+  background: rgba(0, 0, 0, 0.10);
   border: none;
-  padding: 3px 8px;
-  font-family: var(--font);
-  font-size: 11px;
-  font-style: normal;
+  width: 32px;
+  height: 32px;
+  font-size: 16px;
+  line-height: 32px;
+  text-align: center;
   cursor: pointer;
   z-index: 20;
-  border-radius: 2px;
+  border-radius: 50%;
   color: var(--black);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  transition: background 0.15s;
+}
+
+#debug-btn:hover {
+  background: rgba(0, 0, 0, 0.20);
 }
 
 #debug {
   position: fixed;
-  display: none;
-  bottom: 44px;
+  bottom: 56px;
   right: 16px;
-  background: rgba(255, 255, 255, 0.92);
-  padding: 12px 16px;
-  max-height: 60vh;
-  overflow-y: auto;
+  background: rgba(255, 255, 255, 0.94);
+  max-height: 70vh;
+  overflow: hidden;
   z-index: 20;
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  min-width: 200px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  width: 220px;
+  border-radius: 8px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.12);
+  display: flex;
+  flex-direction: column;
 }
 
-#debug p {
+#debug[hidden] {
+  display: none !important;
+}
+
+.debug-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px 8px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  flex-shrink: 0;
+}
+
+.debug-header span {
   font-size: 10px;
   font-style: normal;
   font-variation-settings: 'slnt' 0;
+  font-weight: 700;
   opacity: 0.5;
-  margin-bottom: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
-#debug ul { list-style: none; }
+.debug-link {
+  font-size: 10px;
+  font-style: normal;
+  font-variation-settings: 'slnt' 0;
+  font-weight: 400;
+  text-decoration: none;
+  opacity: 0.5;
+}
+
+.debug-link:hover { opacity: 1; }
+
+#debug-search {
+  display: block;
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  padding: 8px 14px;
+  font-family: var(--font);
+  font-size: 12px;
+  font-style: normal;
+  font-variation-settings: 'slnt' 0;
+  background: transparent;
+  outline: none;
+  color: var(--black);
+  flex-shrink: 0;
+}
+
+#debug-search::placeholder { opacity: 0.35; }
+
+#debug ul {
+  list-style: none;
+  overflow-y: auto;
+  flex: 1;
+  padding: 6px 0;
+}
 
 #debug li {
   font-size: 12px;
   font-style: normal;
   font-variation-settings: 'slnt' 0;
   cursor: pointer;
-  padding: 2px 0;
+  padding: 4px 14px;
+  line-height: 1.4;
 }
 
-#debug li:hover { font-weight: 700; }
+#debug li:hover { background: rgba(0, 0, 0, 0.04); }
 #debug li.active { font-weight: 700; }
+
+#debug-count {
+  font-size: 10px;
+  font-style: normal;
+  font-variation-settings: 'slnt' 0;
+  opacity: 0.35;
+  padding: 6px 14px 8px;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+  flex-shrink: 0;
+}
 
 /* Course page */
 html.course-page,

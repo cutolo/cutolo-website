@@ -33,10 +33,15 @@
 
   <!-- Debug menu -->
   <div id="debug" hidden>
-    <p>Select cocktail</p>
+    <div class="debug-header">
+      <span>Cocktails</span>
+      <a href="ingredients.html" class="debug-link">ingredients →</a>
+    </div>
+    <input id="debug-search" type="search" placeholder="filter…" autocomplete="off" spellcheck="false">
     <ul id="debug-list"></ul>
+    <div id="debug-count"></div>
   </div>
-  <button id="debug-btn" title="Toggle debug menu">debug</button>
+  <button id="debug-btn" title="Toggle debug menu (d)">⚗</button>
 
   <script src="shader.js"></script>
   <script src="cocktail.js"></script>

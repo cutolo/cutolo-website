@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ingredients — cutolo.xyz</title>
+  <link href="https://fonts.googleapis.com/css2?family=Recursive:slnt,wght@-15,300..700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --font: 'Recursive', monospace;
+      --black: #000;
+      --border: rgba(0,0,0,0.08);
+    }
+
+    body {
+      font-family: var(--font);
+      font-style: normal;
+      font-variation-settings: 'slnt' 0;
+      font-size: 14px;
+      line-height: 1.4;
+      color: var(--black);
+      background: #f5f2ec;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+    }
+
+    .page {
+      max-width: 560px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+    }
+
+    .page-header {
+      margin-bottom: 40px;
+    }
+
+    .back {
+      display: inline-block;
+      font-size: 12px;
+      color: inherit;
+      text-decoration: none;
+      opacity: 0.45;
+      margin-bottom: 20px;
+    }
+
+    .back:hover { opacity: 1; }
+
+    .page-header h1 {
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      margin-bottom: 4px;
+    }
+
+    .page-header p {
+      font-size: 12px;
+      opacity: 0.45;
+    }
+
+    .ingredient-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .ingredient-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .ingredient-row:first-child {
+      border-top: 1px solid var(--border);
+    }
+
+    .swatch {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      box-shadow: inset 0 0 0 1px rgba(0,0,0,0.08);
+    }
+
+    .ingredient-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .ingredient-name {
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    .ingredient-meta {
+      font-size: 11px;
+      opacity: 0.4;
+      margin-top: 1px;
+    }
+
+    .ingredient-count {
+      font-size: 11px;
+      font-weight: 600;
+      opacity: 0.3;
+      text-align: right;
+      flex-shrink: 0;
+      min-width: 40px;
+    }
+
+    .loading {
+      opacity: 0.4;
+      font-size: 12px;
+      padding: 24px 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="page-header">
+      <a href="/" class="back">← cocktail of the day</a>
+      <h1>Ingredients</h1>
+      <p id="summary">Loading…</p>
+    </header>
+    <div class="ingredient-list" id="list">
+      <p class="loading">Loading cocktails…</p>
+    </div>
+  </div>
+
+  <script>
+    const INGREDIENT_COLORS = {
+      'Absinthe':        '#78A038',
+      'Angostura':       '#B89060',
+      'Anisette':        '#D8D098',
+      'Apricot Liqueur': '#E8A050',
+      'Arak':            '#D0C8A0',
+      'Bénédictine':     '#CCA820',
+      'Campari':         '#E07868',
+      'Chartreuse':      '#A8C030',
+      'China Bitter':    '#B07838',
+      'Coffee Liqueur':  '#A07850',
+      'Cognac':          '#E8A030',
+      'Cointreau':       '#F0B840',
+      'Crème de Menthe': '#78B888',
+      'Dry Vermouth':    '#D4B888',
+      'Gin':             '#BDD5DC',
+      'Lemon Juice':     '#F0E040',
+      'Medoc Cordial':   '#B87878',
+      'Orange Juice':    '#F0A840',
+      'Orange Liqueur':  '#F0A040',
+      'Rum':             '#D4943A',
+      'Select':          '#E08848',
+      'Simple Syrup':    '#F8E888',
+      'Sugar':           '#F8F0D0',
+      'Sweet Vermouth':  '#C08858',
+      'Water':           '#C8E0F0',
+      'Whisky':          '#C48830',
+    };
+
+    const PATTERN_LABELS = {
+      1: 'pulp dots',
+      2: 'wavy stripes',
+      3: 'fizz',
+      4: 'grain',
+      5: 'leaf shapes',
+    };
+
+    const INGREDIENT_PATTERNS = {
+      'Orange Juice':    1,
+      'Lemon Juice':     2,
+      'Water':           3,
+      'Cognac':          4,
+      'Whisky':          4,
+      'Crème de Menthe': 5,
+    };
+
+    fetch('cocktails.json')
+      .then(r => r.json())
+      .then(cocktails => {
+        const usage = {};
+        cocktails.forEach(c => {
+          c.ingredients.forEach(ing => {
+            usage[ing.name] = (usage[ing.name] || 0) + 1;
+          });
+        });
+
+        const names = Object.keys(INGREDIENT_COLORS).sort((a, b) => a.localeCompare(b));
+        const list = document.getElementById('list');
+        list.innerHTML = '';
+
+        names.forEach(name => {
+          const color   = INGREDIENT_COLORS[name];
+          const patId   = INGREDIENT_PATTERNS[name] || 0;
+          const patName = PATTERN_LABELS[patId];
+          const count   = usage[name] || 0;
+
+          const row = document.createElement('div');
+          row.className = 'ingredient-row';
+          row.innerHTML = `
+            <div class="swatch" style="background:${color}"></div>
+            <div class="ingredient-info">
+              <div class="ingredient-name">${name}</div>
+              ${patName ? `<div class="ingredient-meta">${patName}</div>` : ''}
+            </div>
+            <div class="ingredient-count">${count}</div>
+          `;
+          list.appendChild(row);
+        });
+
+        document.getElementById('summary').textContent =
+          `${names.length} ingredients · ${cocktails.length} cocktails`;
+      })
+      .catch(() => {
+        document.getElementById('list').innerHTML =
+          '<p class="loading">Run via a local server: python3 -m http.server 8000</p>';
+      });
+  </script>
+</body>
+</html>
