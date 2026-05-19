@@ -62,12 +62,14 @@ function loadCocktail(cocktail) {
   document.getElementById('cocktail-instructions').textContent = cocktail.instructions;
 
   const ingredientColors = cocktail.ingredients.map(ing => INGREDIENT_COLORS[ing.name] || '#A0A0A0');
-  document.documentElement.style.setProperty('--top-ingredient-color', ingredientColors[ingredientColors.length - 1]);
-  document.documentElement.style.setProperty('--bottom-ingredient-color', ingredientColors[0]);
-  document.body.style.backgroundColor = ingredientColors[0];
+  const firstColor = ingredientColors[0];
+  const lastColor  = ingredientColors[ingredientColors.length - 1];
+  document.documentElement.style.setProperty('--top-ingredient-color', firstColor);
+  document.documentElement.style.setProperty('--bottom-ingredient-color', lastColor);
+  document.body.style.backgroundColor = firstColor;
 
   const themeColor = document.querySelector('meta[name="theme-color"]');
-  if (themeColor) themeColor.setAttribute('content', ingredientColors[ingredientColors.length - 1]);
+  if (themeColor) themeColor.setAttribute('content', firstColor);
 
   const ul = document.getElementById('cocktail-ingredients');
   ul.innerHTML = '';
@@ -153,6 +155,7 @@ document.addEventListener('DOMContentLoaded', () => {
       } else {
         const hex = INGREDIENT_COLORS[cocktails[idx].ingredients[0].name] || '#C8A050';
         document.body.style.backgroundColor = hex;
+        document.querySelector('header').style.backgroundColor = hex;
       }
     });
 });
