@@ -45,10 +45,8 @@ function hexToRgb(hex) {
   ];
 }
 
-function dateIndex(total) {
-  const d = new Date();
-  const seed = d.getFullYear() * 10000 + (d.getMonth() + 1) * 100 + d.getDate();
-  return seed % total;
+function randomIndex(total) {
+  return Math.floor(Math.random() * total);
 }
 
 function setAppHeight() {
@@ -70,10 +68,7 @@ function loadCocktail(cocktail) {
   document.documentElement.style.setProperty('--bottom-ingredient-color', lastColor);
 
   const themeColor = document.querySelector('meta[name="theme-color"]');
-  if (themeColor) {
-    themeColor.setAttribute('content', firstColor);
-    try { localStorage.setItem('tc', firstColor); } catch(e) {}
-  }
+  if (themeColor) themeColor.setAttribute('content', firstColor);
 
   const ul = document.getElementById('cocktail-ingredients');
   ul.innerHTML = '';
@@ -132,7 +127,7 @@ document.addEventListener('DOMContentLoaded', () => {
   fetch('cocktails.json')
     .then(r => r.json())
     .then(cocktails => {
-      const idx = dateIndex(cocktails.length);
+      const idx = randomIndex(cocktails.length);
       loadCocktail(cocktails[idx]);
       if (ok) {
         LiquidShader.start();
