@@ -20,6 +20,7 @@ html, body {
 
 html {
   overscroll-behavior: none;
+  background: linear-gradient(to bottom, var(--top-ingredient-color), var(--bottom-ingredient-color));
 }
 
 body {
@@ -29,7 +30,7 @@ body {
   font-size: 15px;
   line-height: 1.4;
   color: var(--black);
-  background: linear-gradient(to bottom, var(--top-ingredient-color), var(--bottom-ingredient-color));
+  background: transparent;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overscroll-behavior: none;

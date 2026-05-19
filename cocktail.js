@@ -66,7 +66,6 @@ function loadCocktail(cocktail) {
   const lastColor  = ingredientColors[ingredientColors.length - 1];
   document.documentElement.style.setProperty('--top-ingredient-color', firstColor);
   document.documentElement.style.setProperty('--bottom-ingredient-color', lastColor);
-  document.body.style.background = `linear-gradient(to bottom, ${firstColor}, ${lastColor})`;
 
   const themeColor = document.querySelector('meta[name="theme-color"]');
   if (themeColor) themeColor.setAttribute('content', firstColor);
@@ -152,11 +151,6 @@ document.addEventListener('DOMContentLoaded', () => {
         document.addEventListener('mouseleave', () => {
           LiquidShader.setMouse(-2.0, -2.0);
         });
-      } else {
-        const ing = cocktails[idx].ingredients;
-        const firstHex = INGREDIENT_COLORS[ing[0].name] || '#C8A050';
-        const lastHex  = INGREDIENT_COLORS[ing[ing.length - 1].name] || '#C8A050';
-        document.body.style.background = `linear-gradient(to bottom, ${firstHex}, ${lastHex})`;
       }
     });
 });
