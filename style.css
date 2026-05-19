@@ -29,7 +29,7 @@ body {
   font-size: 15px;
   line-height: 1.4;
   color: var(--black);
-  background: var(--top-ingredient-color);
+  background: linear-gradient(to bottom, var(--top-ingredient-color), var(--bottom-ingredient-color));
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overscroll-behavior: none;
@@ -55,7 +55,6 @@ main {
 header {
   margin: -40px -40px 0;
   padding: 40px 40px 32px;
-  background-color: var(--top-ingredient-color);
 }
 
 header h1,
@@ -79,7 +78,6 @@ header nav {
   font-variation-settings: 'slnt' 0;
   margin: 0 -40px -40px;
   padding: 28px 40px 40px;
-  background-color: var(--bottom-ingredient-color);
 }
 
 .label {
