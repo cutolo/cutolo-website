@@ -60,7 +60,7 @@ const LiquidShader = (() => {
 
     // Pattern 2: Fine wavy stripes (Lemon Juice)
     float waveStripesPat(vec2 uv) {
-      float n = vnoise(vec2(uv.x * 3.0 + u_time * 0.07, uv.y * 3.0 + u_time * 0.024)) * 0.11;
+      float n = vnoise(vec2(uv.x * 3.0 + u_time * 0.04, uv.y * 3.0)) * 0.07;
       float s = fract((uv.x * 0.4 - uv.y + n) * 22.0);
       return step(0.80, s);
     }
@@ -76,10 +76,12 @@ const LiquidShader = (() => {
       return 1.0 - smoothstep(r - 0.018, r + 0.018, length(cell - vec2(cx, cy)));
     }
 
-    // Pattern 4: Grain (Cognac, Whisky) — sampled in flow-space so particles
-    // drift with the liquid rather than sitting frozen on screen.
-    float grainPat(vec2 uv) {
-      vec2 px = fract(floor(uv * u_res) * vec2(0.1031, 0.1030));
+    // Pattern 4: Static grain (Cognac, Whisky)
+    // Uses a precision-safe hash: screen-space coords can reach ~960, making
+    // sin(coord * 127.1 * 127.1 * 43758) overflow float32 and produce banding.
+    // Folding with fract() first keeps intermediate values in [0,1].
+    float grainPat() {
+      vec2 px = fract(floor(gl_FragCoord.xy) * vec2(0.1031, 0.1030));
       px += dot(px, px.yx + 33.33);
       return fract((px.x + px.y) * px.x);
     }
@@ -95,8 +97,8 @@ const LiquidShader = (() => {
       float seed4 = hash(id + 14.2);
       // Fully random center — no staggered row offset
       vec2 center = vec2(0.15 + seed2 * 0.70, 0.15 + seed3 * 0.70);
-      // Slow individual rotation — leaves spin gently inside the liquid
-      float angle = seed * 6.28318 + u_time * (0.12 + seed2 * 0.22);
+      // Random rotation per cell
+      float angle = seed * 6.28318;
       vec2  p   = cell - center;
       float cs  = cos(angle), sn = sin(angle);
       p = vec2(p.x * cs - p.y * sn, p.x * sn + p.y * cs);
@@ -121,7 +123,8 @@ const LiquidShader = (() => {
       if (patId < 0.5) {
         return col;
       } else if (patId >= 3.5 && patId < 4.5) {
-        return clamp(col + vec3((grainPat(uv) - 0.5) * 0.06), 0.0, 1.0);
+        // Grain called directly — avoids speculative evaluation of other patterns
+        return clamp(col + vec3((grainPat() - 0.5) * 0.06), 0.0, 1.0);
       } else {
         float p = getPattern(patId, uv);
         if (p < 0.001) return col;
@@ -157,20 +160,13 @@ const LiquidShader = (() => {
 
       float mouseEdgeWarp = cursorDimple + ripple;
 
-      // --- Pattern UV: flow warp + mouse/impact scatter ---
+      // --- Pattern UV: scatter away from mouse + impact ---
       vec2  dm2    = rawUV - u_mouse;
       float md     = length(dm2);
       vec2  dimp2  = rawUV - u_impact.xy;
       float impD2  = length(dimp2);
       float elap2  = max(0.0, u_time - u_impact.z);
-      // Slow advection field — makes inclusions drift inside the liquid
-      float ft = u_time * 0.038;
-      vec2 flow = vec2(
-        vnoise(rawUV * 2.0 + vec2(ft,       0.4)) - 0.5,
-        vnoise(rawUV * 2.0 + vec2(ft + 1.9, 0.8)) - 0.5
-      );
       vec2  patUV  = rawUV
-                   + flow  * 0.06
                    + dm2   * exp(-md   * md   * 10.0)  * 0.04
                    + dimp2 * exp(-impD2 * 4.0)
                            * exp(-elap2 * 1.5) * 0.04;
@@ -181,33 +177,33 @@ const LiquidShader = (() => {
       float n, edge, wobble;
 
       if (u_count > 1) {
-        n      = fbm(vec2(uv.x * 2.8, u_time * 0.078));
-        wobble = sin(u_time * 0.21) * 0.027;
-        edge   = u_bottoms[0] + (n - 0.5) * 0.13 + wobble + mouseEdgeWarp;
+        n      = fbm(vec2(uv.x * 2.8, u_time * 0.055));
+        wobble = sin(u_time * 0.18) * 0.018;
+        edge   = u_bottoms[0] + (n - 0.5) * 0.09 + wobble + mouseEdgeWarp;
         if (y > edge) col = applyPattern(u_colors[1], u_patterns[1], patUV);
       }
       if (u_count > 2) {
-        n      = fbm(vec2(uv.x * 2.8, u_time * 0.078 + 7.3));
-        wobble = sin(u_time * 0.21 + 2.09) * 0.027;
-        edge   = u_bottoms[1] + (n - 0.5) * 0.13 + wobble + mouseEdgeWarp;
+        n      = fbm(vec2(uv.x * 2.8, u_time * 0.055 + 7.3));
+        wobble = sin(u_time * 0.18 + 2.09) * 0.018;
+        edge   = u_bottoms[1] + (n - 0.5) * 0.09 + wobble + mouseEdgeWarp;
         if (y > edge) col = applyPattern(u_colors[2], u_patterns[2], patUV);
       }
       if (u_count > 3) {
-        n      = fbm(vec2(uv.x * 2.8, u_time * 0.078 + 14.6));
-        wobble = sin(u_time * 0.21 + 4.19) * 0.027;
-        edge   = u_bottoms[2] + (n - 0.5) * 0.13 + wobble + mouseEdgeWarp;
+        n      = fbm(vec2(uv.x * 2.8, u_time * 0.055 + 14.6));
+        wobble = sin(u_time * 0.18 + 4.19) * 0.018;
+        edge   = u_bottoms[2] + (n - 0.5) * 0.09 + wobble + mouseEdgeWarp;
         if (y > edge) col = applyPattern(u_colors[3], u_patterns[3], patUV);
       }
       if (u_count > 4) {
-        n      = fbm(vec2(uv.x * 2.8, u_time * 0.078 + 21.9));
-        wobble = sin(u_time * 0.21 + 1.05) * 0.027;
-        edge   = u_bottoms[3] + (n - 0.5) * 0.13 + wobble + mouseEdgeWarp;
+        n      = fbm(vec2(uv.x * 2.8, u_time * 0.055 + 21.9));
+        wobble = sin(u_time * 0.18 + 1.05) * 0.018;
+        edge   = u_bottoms[3] + (n - 0.5) * 0.09 + wobble + mouseEdgeWarp;
         if (y > edge) col = applyPattern(u_colors[4], u_patterns[4], patUV);
       }
       if (u_count > 5) {
-        n      = fbm(vec2(uv.x * 2.8, u_time * 0.078 + 29.2));
-        wobble = sin(u_time * 0.21 + 3.14) * 0.027;
-        edge   = u_bottoms[4] + (n - 0.5) * 0.13 + wobble + mouseEdgeWarp;
+        n      = fbm(vec2(uv.x * 2.8, u_time * 0.055 + 29.2));
+        wobble = sin(u_time * 0.18 + 3.14) * 0.018;
+        edge   = u_bottoms[4] + (n - 0.5) * 0.09 + wobble + mouseEdgeWarp;
         if (y > edge) col = applyPattern(u_colors[5], u_patterns[5], patUV);
       }
 
