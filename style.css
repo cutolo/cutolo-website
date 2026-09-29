@@ -40,7 +40,12 @@ body {
 #gl-canvas {
   position: fixed;
   inset: 0;
+  width: 100%;
+  height: 100%;
   z-index: -1;
+  /* Canvas renders at half size; keep dither pixels crisp when upscaled */
+  image-rendering: crisp-edges;
+  image-rendering: pixelated;
 }
 
 main {

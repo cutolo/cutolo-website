@@ -131,26 +131,14 @@ document.addEventListener('DOMContentLoaded', () => {
       loadCocktail(cocktails[idx]);
       if (ok) {
         LiquidShader.start();
-        const impactCooldown = 3.0;
-        let _lmx = -2, _lmy = -2, _lmt = 0, _lit = -100;
-        document.addEventListener('mousemove', e => {
-          const mx = e.clientX / window.innerWidth;
-          const my = 1.0 - e.clientY / window.innerHeight;
-          const mt = LiquidShader.getTime();
-          LiquidShader.setMouse(mx, my);
-          const dt = mt - _lmt;
-          if (dt > 0.01 && dt < 0.15) {
-            const speed = Math.hypot(mx - _lmx, my - _lmy) / dt;
-            if (speed > 0.25 && mt - _lit > impactCooldown) {
-              LiquidShader.setImpact(mx, my, mt);
-              _lit = mt;
-            }
-          }
-          _lmx = mx; _lmy = my; _lmt = mt;
-        });
-        document.addEventListener('mouseleave', () => {
-          LiquidShader.setMouse(-2.0, -2.0);
-        });
+        // Pointer events cover mouse, pen and touch (stirring with a finger)
+        const toUV = e => [e.clientX / window.innerWidth, 1.0 - e.clientY / window.innerHeight];
+        const release = () => LiquidShader.setMouse(-2.0, -2.0);
+        document.addEventListener('pointermove', e => LiquidShader.setMouse(...toUV(e)));
+        document.addEventListener('pointerdown', e => LiquidShader.setMouse(...toUV(e)));
+        document.addEventListener('pointerup', e => { if (e.pointerType !== 'mouse') release(); });
+        document.addEventListener('pointercancel', release);
+        document.documentElement.addEventListener('mouseleave', release);
       }
     });
 });

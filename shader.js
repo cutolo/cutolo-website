@@ -1,5 +1,19 @@
 const LiquidShader = (() => {
-  let gl, program, raf, startTime;
+  let gl, program, raf, startTime, lastFrame;
+  const U = {};  // cached uniform locations
+
+  // Size of one dither pixel, in CSS px. The canvas renders at
+  // window size / PIXEL and is upscaled with `image-rendering: pixelated`.
+  const PIXEL = 2;
+
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const TIME_SCALE = reducedMotion ? 0.3 : 1.0;
+
+  // Pointer + fluid state (all in normalised 0–1 screen units)
+  const pointer = { x: -2, y: -2, t: 0, active: false };
+  const rawVel  = [0, 0];
+  const vel     = [0, 0];
+  let slosh = 0, sloshVel = 0;
 
   const VERT = `
     attribute vec2 a_pos;
@@ -15,8 +29,31 @@ const LiquidShader = (() => {
     uniform float u_bottoms[6];
     uniform float u_patterns[6];
     uniform vec2  u_mouse;
-    uniform vec3  u_impact;   // xy = position, z = shader time of impact
+    uniform vec2  u_vel;      // smoothed pointer velocity (uv / sec)
+    uniform float u_slosh;    // surface tilt from sideways motion
 
+    // ─── Dithering ────────────────────────────────────────────────
+    // Recursive Bayer matrix: 2×2 → 4×4 → 8×8, returns a threshold in [0,1).
+    float bayer2(vec2 a) {
+      a = floor(a);
+      return fract(a.x / 2.0 + a.y * a.y * 0.75);
+    }
+    float bayer4(vec2 a) { return bayer2(0.5 * a) * 0.25 + bayer2(a); }
+    float bayer8(vec2 a) { return bayer4(0.5 * a) * 0.25 + bayer2(a); }
+
+    // Number of light steps per unit of shade. Fewer = chunkier bands.
+    const float TONE_STEPS = 8.0;
+
+    // Maps a quantised light level onto the ingredient colour.
+    // level < 0 → shadow, 0 → the ingredient's own colour, level > 0 → light.
+    // Typical range is about -0.4 … +0.6, in steps of 1 / TONE_STEPS.
+    vec3 toneRamp(vec3 base, float level) {
+      // TODO(human): design the shadow + highlight tones
+      if (level < 0.0) return base * (1.0 + level);
+      return mix(base, vec3(1.0), level);
+    }
+
+    // ─── Noise ────────────────────────────────────────────────────
     float hash(vec2 p) {
       return fract(sin(dot(fract(p * vec2(127.1, 311.7)), vec2(127.1, 311.7))) * 43758.5453);
     }
@@ -41,6 +78,26 @@ const LiquidShader = (() => {
       }
       return sum;
     }
+
+    // ─── Caustics ─────────────────────────────────────────────────
+    // Light focused by a moving surface: thin bright webs that crawl.
+    // Iterated domain-warp trick (after joltz0r's water caustic).
+    float caustic(vec2 uv, float t) {
+      vec2  p = uv * 6.28318 - 250.0;
+      vec2  i = p;
+      float c = 1.0;
+      const float inten = 0.005;
+      for (int n = 0; n < 4; n++) {
+        float tt = t * (1.0 - 3.5 / float(n + 1));
+        i  = p + vec2(cos(tt - i.x) + sin(tt + i.y), sin(tt - i.y) + cos(tt + i.x));
+        c += 1.0 / length(vec2(p.x / (sin(i.x + tt) / inten), p.y / (cos(i.y + tt) / inten)));
+      }
+      c /= 4.0;
+      c = 1.17 - pow(c, 1.4);
+      return clamp(pow(abs(c), 8.0), 0.0, 1.0);
+    }
+
+    // ─── Ingredient patterns ──────────────────────────────────────
 
     // Pattern 1: Pulp dots (Orange Juice) — organic scattered distribution
     float bubblesPat(vec2 uv) {
@@ -135,86 +192,64 @@ const LiquidShader = (() => {
       }
     }
 
+    // ─── Main ─────────────────────────────────────────────────────
     void main() {
-      vec2 rawUV = gl_FragCoord.xy / u_res;
-      vec2 uv    = rawUV;
+      vec2  rawUV  = gl_FragCoord.xy / u_res;
+      float aspect = u_res.x / u_res.y;
+      float dth    = bayer8(gl_FragCoord.xy);
 
-      // Barrel distortion
-      vec2 c = uv - 0.5;
+      // --- Stirring: liquid near the pointer is dragged along its motion ---
+      vec2  dm    = (rawUV - u_mouse) * vec2(aspect, 1.0);
+      float near  = exp(-dot(dm, dm) * 14.0);
+      float speed = length(u_vel);
+      vec2  flowUV = rawUV - u_vel * near * 0.05;
+
+      // Barrel distortion (glass curvature)
+      vec2 uv = flowUV;
+      vec2 c  = uv - 0.5;
       uv += c * dot(c, c) * 0.025;
       float y = 1.0 - uv.y;
 
-      // --- Mouse effects ---
-      // 1. Subtle static dimple at cursor
-      vec2 dm = uv - u_mouse;
-      float cursorDimple = exp(-dot(dm, dm) * 25.0) * 0.003;
+      // Layer boundaries get wider (more mixing) where the liquid is stirred
+      float mixWidth = 0.006 + near * min(speed, 2.0) * 0.03;
+      float tilt     = (uv.x - 0.5) * u_slosh;
 
-      // 2. Decaying radial ripple from last impact
-      vec2  dimp    = uv - u_impact.xy;
-      float impDist = length(dimp);
-      float elapsed = max(0.0, u_time - u_impact.z);
-      float ripple  = exp(-elapsed * 1.4)
-                    * sin(impDist * 22.0 - elapsed * 5.0)
-                    * exp(-impDist * 4.5)
-                    * 0.011;
+      // --- Layers: dithered transition at every boundary ---
+      vec3  col      = u_colors[0];
+      float pat      = u_patterns[0];
+      float meniscus = 0.0;
 
-      float mouseEdgeWarp = cursorDimple + ripple;
+      for (int i = 0; i < 5; i++) {
+        if (i >= u_count - 1) break;
+        float fi     = float(i);
+        float n      = fbm(vec2(uv.x * 2.8, u_time * 0.055 + fi * 7.3));
+        float wobble = sin(u_time * 0.18 + fi * 2.09) * 0.018;
+        float edge   = u_bottoms[i] + (n - 0.5) * 0.09 + wobble + tilt;
 
-      // --- Pattern UV: scatter away from mouse + impact ---
-      vec2  dm2    = rawUV - u_mouse;
-      float md     = length(dm2);
-      vec2  dimp2  = rawUV - u_impact.xy;
-      float impD2  = length(dimp2);
-      float elap2  = max(0.0, u_time - u_impact.z);
-      vec2  patUV  = rawUV
-                   + dm2   * exp(-md   * md   * 10.0)  * 0.04
-                   + dimp2 * exp(-impD2 * 4.0)
-                           * exp(-elap2 * 1.5) * 0.04;
-
-      // Default: first band
-      vec3 col = applyPattern(u_colors[0], u_patterns[0], patUV);
-
-      float n, edge, wobble;
-
-      if (u_count > 1) {
-        n      = fbm(vec2(uv.x * 2.8, u_time * 0.055));
-        wobble = sin(u_time * 0.18) * 0.018;
-        edge   = u_bottoms[0] + (n - 0.5) * 0.09 + wobble + mouseEdgeWarp;
-        if (y > edge) col = applyPattern(u_colors[1], u_patterns[1], patUV);
-      }
-      if (u_count > 2) {
-        n      = fbm(vec2(uv.x * 2.8, u_time * 0.055 + 7.3));
-        wobble = sin(u_time * 0.18 + 2.09) * 0.018;
-        edge   = u_bottoms[1] + (n - 0.5) * 0.09 + wobble + mouseEdgeWarp;
-        if (y > edge) col = applyPattern(u_colors[2], u_patterns[2], patUV);
-      }
-      if (u_count > 3) {
-        n      = fbm(vec2(uv.x * 2.8, u_time * 0.055 + 14.6));
-        wobble = sin(u_time * 0.18 + 4.19) * 0.018;
-        edge   = u_bottoms[2] + (n - 0.5) * 0.09 + wobble + mouseEdgeWarp;
-        if (y > edge) col = applyPattern(u_colors[3], u_patterns[3], patUV);
-      }
-      if (u_count > 4) {
-        n      = fbm(vec2(uv.x * 2.8, u_time * 0.055 + 21.9));
-        wobble = sin(u_time * 0.18 + 1.05) * 0.018;
-        edge   = u_bottoms[3] + (n - 0.5) * 0.09 + wobble + mouseEdgeWarp;
-        if (y > edge) col = applyPattern(u_colors[4], u_patterns[4], patUV);
-      }
-      if (u_count > 5) {
-        n      = fbm(vec2(uv.x * 2.8, u_time * 0.055 + 29.2));
-        wobble = sin(u_time * 0.18 + 3.14) * 0.018;
-        edge   = u_bottoms[4] + (n - 0.5) * 0.09 + wobble + mouseEdgeWarp;
-        if (y > edge) col = applyPattern(u_colors[5], u_patterns[5], patUV);
+        float t = smoothstep(edge - mixWidth, edge + mixWidth, y);
+        if (t > dth) {
+          col = u_colors[i + 1];
+          pat = u_patterns[i + 1];
+        }
+        float dy = (y - edge) / 0.006;
+        meniscus += exp(-dy * dy);
       }
 
-      // Vignette
-      float dist     = length(uv - 0.5);
-      float vignette = 1.0 - smoothstep(0.3, 0.85, dist) * 0.35;
+      col = applyPattern(col, pat, flowUV);
 
-      // Top-right specular highlight
-      float hl = exp(-length((uv - vec2(0.72, 0.15)) * vec2(2.0, 1.5)) * 4.5) * 0.1;
+      // --- Light, as a single "shade" value around 0 ---
+      vec2  cuv   = vec2(flowUV.x * aspect, flowUV.y) * 1.8;
+      float caus  = caustic(cuv, u_time * 0.35 + 23.0);
+      float dist  = length(uv - 0.5);
+      float vign  = smoothstep(0.3, 0.85, dist) * 0.35;
+      float spec  = exp(-length((uv - vec2(0.72, 0.15)) * vec2(2.0, 1.5)) * 4.5) * 0.25;
 
-      gl_FragColor = vec4(col * vignette + vec3(hl), 1.0);
+      float shade = caus * 0.35 + spec + meniscus * 0.18 - vign;
+
+      // --- Ordered dither: quantise shade into TONE_STEPS per unit ---
+      float level = floor(shade * TONE_STEPS + dth) / TONE_STEPS;
+
+      gl_FragColor = vec4(clamp(toneRamp(col, level), 0.0, 1.0), 1.0);
     }
   `;
 
@@ -240,6 +275,11 @@ const LiquidShader = (() => {
       console.error('Program link error:', gl.getProgramInfoLog(program));
     gl.useProgram(program);
 
+    ['u_res', 'u_time', 'u_count', 'u_colors', 'u_bottoms', 'u_patterns',
+     'u_mouse', 'u_vel', 'u_slosh'].forEach(name => {
+      U[name] = gl.getUniformLocation(program, name);
+    });
+
     const buf = gl.createBuffer();
     gl.bindBuffer(gl.ARRAY_BUFFER, buf);
     gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([
@@ -250,8 +290,7 @@ const LiquidShader = (() => {
     gl.enableVertexAttribArray(pos);
     gl.vertexAttribPointer(pos, 2, gl.FLOAT, false, 0, 0);
 
-    gl.uniform2f(gl.getUniformLocation(program, 'u_mouse'),  -2.0, -2.0);
-    gl.uniform3f(gl.getUniformLocation(program, 'u_impact'), -2.0, -2.0, -100.0);
+    gl.uniform2f(U.u_mouse, -2.0, -2.0);
 
     resize();
     window.addEventListener('resize', resize);
@@ -261,10 +300,10 @@ const LiquidShader = (() => {
 
   function resize() {
     const canvas = gl.canvas;
-    canvas.width  = window.innerWidth;
-    canvas.height = window.innerHeight;
+    canvas.width  = Math.ceil(window.innerWidth  / PIXEL);
+    canvas.height = Math.ceil(window.innerHeight / PIXEL);
     gl.viewport(0, 0, canvas.width, canvas.height);
-    gl.uniform2f(gl.getUniformLocation(program, 'u_res'), canvas.width, canvas.height);
+    gl.uniform2f(U.u_res, canvas.width, canvas.height);
   }
 
   function setBands(bands) {
@@ -282,35 +321,68 @@ const LiquidShader = (() => {
       colors[i * 3 + 2] = b;
       patterns[i] = bands[i].pattern || 0;
     }
-    gl.uniform1i(gl.getUniformLocation(program, 'u_count'),    count);
-    gl.uniform3fv(gl.getUniformLocation(program, 'u_colors'),   colors);
-    gl.uniform1fv(gl.getUniformLocation(program, 'u_bottoms'),  bottoms);
-    gl.uniform1fv(gl.getUniformLocation(program, 'u_patterns'), patterns);
+    gl.uniform1i(U.u_count,     count);
+    gl.uniform3fv(U.u_colors,   colors);
+    gl.uniform1fv(U.u_bottoms,  bottoms);
+    gl.uniform1fv(U.u_patterns, patterns);
   }
 
+  // x, y in 0–1 with y pointing up (GL convention). Call with -2, -2 to release.
   function setMouse(x, y) {
     if (!program) return;
-    gl.uniform2f(gl.getUniformLocation(program, 'u_mouse'), x, y);
-  }
-
-  function setImpact(x, y, t) {
-    if (!program) return;
-    gl.uniform3f(gl.getUniformLocation(program, 'u_impact'), x, y, t);
+    const t = getTime();
+    const inside = x > -1;
+    if (inside && pointer.active) {
+      const dt = Math.max(t - pointer.t, 1 / 240);
+      rawVel[0] = (x - pointer.x) / dt;
+      rawVel[1] = (y - pointer.y) / dt;
+    }
+    pointer.x = x; pointer.y = y; pointer.t = t; pointer.active = inside;
+    gl.uniform2f(U.u_mouse, x, y);
   }
 
   function getTime() {
     return startTime ? (performance.now() - startTime) / 1000 : 0;
   }
 
+  // Integrates pointer velocity and the slosh spring once per frame.
+  function stepFluid(dt) {
+    // Raw velocity fades when the pointer stops sending events
+    const fade = Math.exp(-dt * 10);
+    rawVel[0] *= fade; rawVel[1] *= fade;
+
+    const follow = 1 - Math.exp(-dt * 8);
+    vel[0] += (rawVel[0] - vel[0]) * follow;
+    vel[1] += (rawVel[1] - vel[1]) * follow;
+    const mag = Math.hypot(vel[0], vel[1]);
+    if (mag > 3) { vel[0] *= 3 / mag; vel[1] *= 3 / mag; }
+
+    // Damped spring: sideways motion kicks it, it sways back to level
+    if (!reducedMotion) {
+      const accel = -22 * slosh - 1.8 * sloshVel + vel[0] * 0.06;
+      sloshVel += accel * dt;
+      slosh    += sloshVel * dt;
+      slosh = Math.max(-0.08, Math.min(0.08, slosh));
+    }
+
+    gl.uniform2f(U.u_vel, vel[0], vel[1]);
+    gl.uniform1f(U.u_slosh, slosh);
+  }
+
   function tick() {
-    const t = (performance.now() - startTime) / 1000;
-    gl.uniform1f(gl.getUniformLocation(program, 'u_time'), t);
+    const now = performance.now();
+    const dt  = Math.min((now - (lastFrame || now)) / 1000, 0.05);
+    lastFrame = now;
+
+    stepFluid(dt);
+    gl.uniform1f(U.u_time, (now - startTime) / 1000 * TIME_SCALE);
     gl.drawArrays(gl.TRIANGLES, 0, 6);
     raf = requestAnimationFrame(tick);
   }
 
   function start() {
     if (raf) cancelAnimationFrame(raf);
+    lastFrame = 0;
     tick();
   }
 
@@ -319,5 +391,5 @@ const LiquidShader = (() => {
     window.removeEventListener('resize', resize);
   }
 
-  return { init, setBands, setMouse, setImpact, getTime, start, destroy };
+  return { init, setBands, setMouse, getTime, start, destroy };
 })();
