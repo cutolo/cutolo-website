@@ -64,9 +64,8 @@ const LiquidShader = (() => {
 
     // Maps a quantised light level onto the ingredient colour.
     // level < 0 → shadow, 0 → the ingredient's own colour, level > 0 → light.
-    // Typical range is about -0.4 … +0.6, in steps of 1 / TONE_STEPS.
+    // Shadows darken multiplicatively, highlights mix toward white.
     vec3 toneRamp(vec3 base, float level) {
-      // TODO(human): design the shadow + highlight tones
       if (level < 0.0) return base * (1.0 + level);
       return mix(base, vec3(1.0), level);
     }
