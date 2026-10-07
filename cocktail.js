@@ -135,7 +135,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const toUV = e => [e.clientX / window.innerWidth, 1.0 - e.clientY / window.innerHeight];
         const release = () => LiquidShader.setMouse(-2.0, -2.0);
         document.addEventListener('pointermove', e => LiquidShader.setMouse(...toUV(e)));
-        document.addEventListener('pointerdown', e => LiquidShader.setMouse(...toUV(e)));
+        document.addEventListener('pointerdown', e => {
+          LiquidShader.setMouse(...toUV(e));
+          LiquidShader.poke(...toUV(e));
+        });
         document.addEventListener('pointerup', e => { if (e.pointerType !== 'mouse') release(); });
         document.addEventListener('pointercancel', release);
         document.documentElement.addEventListener('mouseleave', release);
