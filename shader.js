@@ -20,11 +20,10 @@ const LiquidShader = (() => {
   const vel     = [0, 0];
   let slosh = 0, sloshVel = 0;
 
-  // Up to 4 live ripples: x, y, start time, strength
-  const ripples = new Float32Array(16);
-  for (let i = 0; i < 4; i++) ripples[i * 4 + 2] = -100;
-  let rippleIdx = 0;
-  const lastRipple = { x: -2, y: -2, t: -100 };
+  // Up to 4 live tap splashes: x, y, start time, strength
+  const splashes = new Float32Array(16);
+  for (let i = 0; i < 4; i++) splashes[i * 4 + 2] = -100;
+  let splashIdx = 0;
 
   const VERT = `
     attribute vec2 a_pos;
@@ -36,7 +35,7 @@ const LiquidShader = (() => {
     uniform sampler2D u_prev;    // last frame — the liquid remembers itself
     uniform vec2  u_res;
     uniform float u_time;        // animation time (slowed for reduced motion)
-    uniform float u_clock;       // real seconds, for ripples
+    uniform float u_clock;       // real seconds, for tap splashes
     uniform float u_frame;
     uniform float u_dt;          // frame duration in 60fps frames
     uniform float u_refresh;     // chance a pixel is re-poured this frame
@@ -47,7 +46,7 @@ const LiquidShader = (() => {
     uniform vec2  u_mouse;
     uniform vec2  u_vel;         // smoothed pointer velocity (uv / sec)
     uniform float u_slosh;       // surface tilt from sideways motion
-    uniform vec4  u_ripples[4];  // xy = origin, z = start time, w = strength
+    uniform vec4  u_splashes[4]; // taps: xy = origin, z = start time, w = strength
 
     // ─── Dithering ────────────────────────────────────────────────
     // Recursive Bayer matrix: 2×2 → 4×4 → 8×8, returns a threshold in [0,1).
@@ -60,6 +59,8 @@ const LiquidShader = (() => {
 
     // Number of light steps per unit of shade. Fewer = chunkier bands.
     const float TONE_STEPS = 8.0;
+    // How far each light step moves away from the ingredient colour (0–1)
+    const float TONE_SOFTNESS = 0.35;
 
     // Maps a quantised light level onto the ingredient colour.
     // level < 0 → shadow, 0 → the ingredient's own colour, level > 0 → light.
@@ -256,30 +257,36 @@ const LiquidShader = (() => {
 
       col = applyPattern(col, pat, uv, thPat);
 
-      // Living texture: sparse lighter/darker pixels suspended in the liquid
-      float sparkle = (vnoise(vec2(uv.x * aspect, uv.y) * 16.0 + u_time * 0.25) - 0.5) * 0.16;
+      // Living texture: a few lighter/darker pixels suspended in the liquid
+      float sparkle = (vnoise(vec2(uv.x * aspect, uv.y) * 16.0 + u_time * 0.25) - 0.5) * 0.08;
       float spec    = exp(-length((uv - vec2(0.72, 0.15)) * vec2(2.0, 1.5)) * 4.5) * 0.25;
       float level   = floor((sparkle + spec) * TONE_STEPS + thTone) / TONE_STEPS;
 
-      return clamp(toneRamp(col, level), 0.0, 1.0);
+      // TONE_SOFTNESS < 1 keeps each step close to the ingredient colour
+      return clamp(toneRamp(col, level * TONE_SOFTNESS), 0.0, 1.0);
     }
 
     // ─── The current ──────────────────────────────────────────────
-    // Ripples: rings that push pixels outward and back as they travel.
-    vec2 rippleFlow(vec2 uv, float aspect) {
-      vec2 v = vec2(0.0);
+    // Pointer: carries the dots it passes through and scatters them a little.
+    // Evaluated per pixel (not per block) so single dots move, not chunks.
+    vec2 pointerFlow(vec2 px, vec2 uv, float aspect, float fr) {
+      vec2  dm   = (uv - u_mouse) * vec2(aspect, 1.0);
+      float near = exp(-dot(dm, dm) * 120.0);
+      float spd  = min(length(u_vel), 2.0);
+      vec2  v    = u_vel * near * 1.8;
+      vec2  jit  = vec2(hash12(px + fr * 1.91), hash12(px.yx + fr * 2.37)) - 0.5;
+      v += jit * near * spd * 2.0;
+
+      // Taps: a short outward push that fades, no oscillation
       for (int i = 0; i < 4; i++) {
-        vec4  r = u_ripples[i];
+        vec4  r = u_splashes[i];
         float e = u_clock - r.z;
-        if (e < 0.0 || e > 2.5) continue;
+        if (e < 0.0 || e > 0.6) continue;
         vec2  d    = (uv - r.xy) * vec2(aspect, 1.0);
         float dist = length(d) + 1e-4;
-        float x    = dist - e * 0.22;                 // ring travels outward
-        float wave = sin(x * 70.0) * exp(-x * x * 300.0);
-        float fade = exp(-e * 1.8) * smoothstep(0.0, 0.08, e);
-        v += d / dist * wave * fade * r.w;
+        v += d / dist * exp(-dist * dist * 200.0) * exp(-e * 8.0) * r.w * 3.0;
       }
-      return v * 1.4;
+      return v;
     }
 
     // 1 near a layer boundary, 0 deep inside a layer (cheap: no edge noise)
@@ -305,12 +312,7 @@ const LiquidShader = (() => {
       vec2  v  = vec2(dy, -dx) / (2.0 * e) * 0.1;
       // Calm inside each layer, churning where two ingredients meet
       v *= mix(0.1, 0.7, nearBoundary(uv));
-
-      // Pointer gently drags the liquid it passes through
-      vec2 dm = (uv - u_mouse) * vec2(aspect, 1.0);
-      v += u_vel * exp(-dot(dm, dm) * 90.0) * 0.5;
-
-      return v + rippleFlow(uv, aspect);
+      return v;
     }
 
     // ─── Main ─────────────────────────────────────────────────────
@@ -325,8 +327,12 @@ const LiquidShader = (() => {
       vec2  blk = floor(px / bs);
       vec2  v   = flowAt((blk + 0.5) * bs / u_res, aspect) * u_dt;
 
+      // Pointer moves individual pixels; where it acts, rounding is per pixel too
+      vec2 pv  = pointerFlow(px, (px + 0.5) / u_res, aspect, fr) * u_dt;
+      vec2 cell = dot(pv, pv) > 1e-4 ? px + 0.5 : blk;
+
       // Whole-pixel moves only: round randomly so slow currents still move
-      vec2 off   = floor(v + vec2(hash12(blk + fr * 0.731), hash12(blk.yx + fr * 1.137)));
+      vec2 off   = floor(v + pv + vec2(hash12(cell + fr * 0.731), hash12(cell.yx + fr * 1.137)));
       vec3 moved = texture2D(u_prev, (px - off + 0.5) / u_res).rgb;
 
       // A few random pixels are re-poured from the fresh cocktail
@@ -362,7 +368,7 @@ const LiquidShader = (() => {
 
     ['u_prev', 'u_res', 'u_time', 'u_clock', 'u_frame', 'u_dt', 'u_refresh',
      'u_count', 'u_colors', 'u_bottoms', 'u_patterns',
-     'u_mouse', 'u_vel', 'u_slosh', 'u_ripples'].forEach(name => {
+     'u_mouse', 'u_vel', 'u_slosh', 'u_splashes'].forEach(name => {
       U[name] = gl.getUniformLocation(program, name);
     });
 
@@ -387,7 +393,7 @@ const LiquidShader = (() => {
     gl.uniform1i(U.u_prev, 0);
 
     gl.uniform2f(U.u_mouse, -2.0, -2.0);
-    gl.uniform4fv(U.u_ripples, ripples);
+    gl.uniform4fv(U.u_splashes, splashes);
 
     resize();
     window.addEventListener('resize', resize);
@@ -428,16 +434,11 @@ const LiquidShader = (() => {
     gl.uniform1fv(U.u_patterns, patterns);
   }
 
-  function addRipple(x, y, strength) {
-    const i = (rippleIdx++ % 4) * 4;
-    ripples[i] = x; ripples[i + 1] = y; ripples[i + 2] = getTime(); ripples[i + 3] = strength;
-    lastRipple.x = x; lastRipple.y = y; lastRipple.t = ripples[i + 2];
-  }
-
-  // A tap or click drops a ripple where it lands
+  // A tap or click pushes the pixels under it outward
   function poke(x, y) {
     if (!program) return;
-    addRipple(x, y, 1.0);
+    const i = (splashIdx++ % 4) * 4;
+    splashes[i] = x; splashes[i + 1] = y; splashes[i + 2] = getTime(); splashes[i + 3] = 1.0;
   }
 
   // x, y in 0–1 with y pointing up (GL convention). Call with -2, -2 to release.
@@ -449,14 +450,6 @@ const LiquidShader = (() => {
       const dt = Math.max(t - pointer.t, 1 / 240);
       rawVel[0] = (x - pointer.x) / dt;
       rawVel[1] = (y - pointer.y) / dt;
-
-      // Moving pointer leaves a trail of small ripples
-      const aspect = gl.canvas.width / gl.canvas.height;
-      const moved  = Math.hypot((x - lastRipple.x) * aspect, y - lastRipple.y);
-      if (moved > 0.06 && t - lastRipple.t > 0.1) {
-        const speed = Math.hypot(rawVel[0], rawVel[1]);
-        addRipple(x, y, Math.max(0.3, Math.min(1.0, speed / 1.5)));
-      }
     }
     pointer.x = x; pointer.y = y; pointer.t = t; pointer.active = inside;
     gl.uniform2f(U.u_mouse, x, y);
@@ -488,7 +481,7 @@ const LiquidShader = (() => {
 
     gl.uniform2f(U.u_vel, vel[0], vel[1]);
     gl.uniform1f(U.u_slosh, slosh);
-    gl.uniform4fv(U.u_ripples, ripples);
+    gl.uniform4fv(U.u_splashes, splashes);
   }
 
   function tick() {
