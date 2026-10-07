@@ -79,24 +79,6 @@ const LiquidShader = (() => {
       return sum;
     }
 
-    // ─── Caustics ─────────────────────────────────────────────────
-    // Light focused by a moving surface: thin bright webs that crawl.
-    // Iterated domain-warp trick (after joltz0r's water caustic).
-    float caustic(vec2 uv, float t) {
-      vec2  p = uv * 6.28318 - 250.0;
-      vec2  i = p;
-      float c = 1.0;
-      const float inten = 0.005;
-      for (int n = 0; n < 4; n++) {
-        float tt = t * (1.0 - 3.5 / float(n + 1));
-        i  = p + vec2(cos(tt - i.x) + sin(tt + i.y), sin(tt - i.y) + cos(tt + i.x));
-        c += 1.0 / length(vec2(p.x / (sin(i.x + tt) / inten), p.y / (cos(i.y + tt) / inten)));
-      }
-      c /= 4.0;
-      c = 1.17 - pow(c, 1.4);
-      return clamp(pow(abs(c), 8.0), 0.0, 1.0);
-    }
-
     // ─── Ingredient patterns ──────────────────────────────────────
 
     // Pattern 1: Pulp dots (Orange Juice) — organic scattered distribution
@@ -238,13 +220,11 @@ const LiquidShader = (() => {
       col = applyPattern(col, pat, flowUV);
 
       // --- Light, as a single "shade" value around 0 ---
-      vec2  cuv   = vec2(flowUV.x * aspect, flowUV.y) * 1.8;
-      float caus  = caustic(cuv, u_time * 0.35 + 23.0);
       float dist  = length(uv - 0.5);
       float vign  = smoothstep(0.3, 0.85, dist) * 0.35;
       float spec  = exp(-length((uv - vec2(0.72, 0.15)) * vec2(2.0, 1.5)) * 4.5) * 0.25;
 
-      float shade = caus * 0.35 + spec + meniscus * 0.18 - vign;
+      float shade = spec + meniscus * 0.18 - vign;
 
       // --- Ordered dither: quantise shade into TONE_STEPS per unit ---
       float level = floor(shade * TONE_STEPS + dth) / TONE_STEPS;
