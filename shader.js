@@ -241,11 +241,11 @@ const LiquidShader = (() => {
         float wobble = sin(u_time * 0.18 + fi * 2.09) * 0.018;
         float edge   = u_bottoms[i] + (n - 0.5) * 0.09 + wobble + tilt;
 
-        // Gradient half-width, never more than ~35% of the thinner neighbour
+        // Gradient half-width: a few pixels, close to a clean edge
         float room = min(u_bottoms[i] - prevBottom, u_bottoms[i + 1] - u_bottoms[i]);
-        float w    = min(0.012 + 0.018 * vnoise(vec2(uv.x * 2.0 + fi * 3.0, u_time * 0.05)), room * 0.35);
+        float w    = min(0.004 + 0.006 * vnoise(vec2(uv.x * 2.0 + fi * 3.0, u_time * 0.05)), room * 0.2);
 
-        float tendrils = (fbm(vec2(uv.x * aspect * 4.0, y * 7.0) + vec2(fi * 3.1, -u_time * 0.04)) - 0.5) * 1.6;
+        float tendrils = (fbm(vec2(uv.x * aspect * 4.0, y * 7.0) + vec2(fi * 3.1, -u_time * 0.04)) - 0.5) * 1.0;
         float m = smoothstep(-1.0, 1.0, (y - edge) / w + tendrils);
         if (m > thMix) {
           col = u_colors[i + 1];
@@ -298,13 +298,13 @@ const LiquidShader = (() => {
     // Velocity in sim pixels per 60fps frame
     vec2 flowAt(vec2 uv, float aspect) {
       // Idle convection: curl of a slow noise field (swirls, no sinks)
-      vec2  q = vec2(uv.x * aspect, uv.y) * 2.2 + u_time * 0.05;
+      vec2  q = vec2(uv.x * aspect, uv.y) * 2.2 + u_time * 0.025;
       const float e = 0.05;
       float dx = vnoise(q + vec2(e, 0.0)) - vnoise(q - vec2(e, 0.0));
       float dy = vnoise(q + vec2(0.0, e)) - vnoise(q - vec2(0.0, e));
-      vec2  v  = vec2(dy, -dx) / (2.0 * e) * 0.35;
+      vec2  v  = vec2(dy, -dx) / (2.0 * e) * 0.18;
       // Calm inside each layer, churning where two ingredients meet
-      v *= mix(0.25, 1.5, nearBoundary(uv));
+      v *= mix(0.2, 1.0, nearBoundary(uv));
 
       // Pointer gently drags the liquid it passes through
       vec2 dm = (uv - u_mouse) * vec2(aspect, 1.0);
@@ -319,8 +319,8 @@ const LiquidShader = (() => {
       float aspect = u_res.x / u_res.y;
       float fr     = mod(u_frame, 997.0);
 
-      // Motion blocks of random size (datamosh macroblocks), re-cut twice a second
-      float hb  = hash12(floor(px / 16.0) + floor(u_time * 2.0) * 7.31);
+      // Motion blocks of random size (datamosh macroblocks), re-cut once a second
+      float hb  = hash12(floor(px / 16.0) + floor(u_time) * 7.31);
       float bs  = hb < 0.2 ? 16.0 : (hb < 0.5 ? 8.0 : (hb < 0.85 ? 4.0 : 2.0));
       vec2  blk = floor(px / bs);
       vec2  v   = flowAt((blk + 0.5) * bs / u_res, aspect) * u_dt;
