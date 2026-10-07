@@ -9,7 +9,7 @@ const LiquidShader = (() => {
 
   // Share of pixels re-poured from the fresh cocktail each frame (at 60fps).
   // Lower = longer datamosh trails, higher = the cocktail holds its shape.
-  const REFRESH = 0.03;
+  const REFRESH = 0.04;
 
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const TIME_SCALE = reducedMotion ? 0.3 : 1.0;
@@ -243,9 +243,9 @@ const LiquidShader = (() => {
 
         // Gradient half-width: a few pixels, close to a clean edge
         float room = min(u_bottoms[i] - prevBottom, u_bottoms[i + 1] - u_bottoms[i]);
-        float w    = min(0.004 + 0.006 * vnoise(vec2(uv.x * 2.0 + fi * 3.0, u_time * 0.05)), room * 0.2);
+        float w    = min(0.002 + 0.003 * vnoise(vec2(uv.x * 2.0 + fi * 3.0, u_time * 0.05)), room * 0.2);
 
-        float tendrils = (fbm(vec2(uv.x * aspect * 4.0, y * 7.0) + vec2(fi * 3.1, -u_time * 0.04)) - 0.5) * 1.0;
+        float tendrils = (fbm(vec2(uv.x * aspect * 4.0, y * 7.0) + vec2(fi * 3.1, -u_time * 0.04)) - 0.5) * 0.6;
         float m = smoothstep(-1.0, 1.0, (y - edge) / w + tendrils);
         if (m > thMix) {
           col = u_colors[i + 1];
@@ -302,9 +302,9 @@ const LiquidShader = (() => {
       const float e = 0.05;
       float dx = vnoise(q + vec2(e, 0.0)) - vnoise(q - vec2(e, 0.0));
       float dy = vnoise(q + vec2(0.0, e)) - vnoise(q - vec2(0.0, e));
-      vec2  v  = vec2(dy, -dx) / (2.0 * e) * 0.18;
+      vec2  v  = vec2(dy, -dx) / (2.0 * e) * 0.1;
       // Calm inside each layer, churning where two ingredients meet
-      v *= mix(0.2, 1.0, nearBoundary(uv));
+      v *= mix(0.1, 0.7, nearBoundary(uv));
 
       // Pointer gently drags the liquid it passes through
       vec2 dm = (uv - u_mouse) * vec2(aspect, 1.0);
