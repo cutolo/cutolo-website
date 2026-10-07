@@ -45,6 +45,28 @@ function hexToRgb(hex) {
   ];
 }
 
+function rgbToHex(rgb) {
+  return '#' + rgb.map(c => Math.round(c * 255).toString(16).padStart(2, '0')).join('');
+}
+
+// Relative luminance (WCAG) of an [r, g, b] colour in 0–1
+function luminance(rgb) {
+  const lin = c => c <= 0.04045 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4);
+  return 0.2126 * lin(rgb[0]) + 0.7152 * lin(rgb[1]) + 0.0722 * lin(rgb[2]);
+}
+
+// Black text needs luminance ≥ 0.30 for 7:1 contrast (WCAG AAA).
+// Darker ingredients are nudged toward white just enough, never more than 12%;
+// lighter ones are returned untouched.
+const MIN_TEXT_LUMINANCE = 0.30;
+function liftForText(hex) {
+  const rgb = hexToRgb(hex);
+  const mixed = k => rgb.map(c => c + (1 - c) * k);
+  let t = 0;
+  while (luminance(mixed(t)) < MIN_TEXT_LUMINANCE && t < 0.12) t += 0.005;
+  return mixed(t);
+}
+
 function randomIndex(total) {
   return Math.floor(Math.random() * total);
 }
@@ -61,7 +83,8 @@ function loadCocktail(cocktail) {
   document.getElementById('cocktail-name').textContent = cocktail.name;
   document.getElementById('cocktail-instructions').textContent = cocktail.instructions;
 
-  const ingredientColors = cocktail.ingredients.map(ing => INGREDIENT_COLORS[ing.name] || '#A0A0A0');
+  const ingredientRgb = cocktail.ingredients.map(ing => liftForText(INGREDIENT_COLORS[ing.name] || '#A0A0A0'));
+  const ingredientColors = ingredientRgb.map(rgbToHex);
   const firstColor = ingredientColors[0];
   const lastColor  = ingredientColors[ingredientColors.length - 1];
   document.documentElement.style.setProperty('--top-ingredient-color', firstColor);
@@ -78,9 +101,9 @@ function loadCocktail(cocktail) {
     ul.appendChild(li);
   });
 
-  const bands = cocktail.ingredients.map(ing => ({
+  const bands = cocktail.ingredients.map((ing, i) => ({
     pct:     ing.pct / 100,
-    rgb:     hexToRgb(INGREDIENT_COLORS[ing.name] || '#A0A0A0'),
+    rgb:     ingredientRgb[i],
     pattern: INGREDIENT_PATTERNS[ing.name] || 0,
   }));
 
